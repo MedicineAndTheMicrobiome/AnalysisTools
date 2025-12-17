@@ -8,15 +8,16 @@ library('glmnet');
 library('doMC');
 
 source('~/git/AnalysisTools/Metadata/InputFileLibrary/InputFileLibrary.r');
+source('~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r');
 
-options(useFancyQuotes=F);
+options(useFancyQuotes=F, width=80);
 
 CVSEED=1;
 
 params=c(
 	"factor_fn", "f", 1, "character",
-	"subjectid_cn", "s", 1, "character",
-	"responses_cn", "r", 1, "character",
+	"subjectid_cn", "s", 2, "character",
+	"responses_fn", "r", 1, "character",
 	"covariates_fn", "c" , 1, "character",
 	"target_var_fn", "t", 1, "character",
 	"outputroot", "o", 1, "character",
@@ -30,8 +31,8 @@ usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"\n",
 	"	-f <Factor Filename>\n",
-	"	-s <Subject ID Column Name>\n",
-	"	-r <Response Column Name>\n",
+	"	[-s <Subject ID Column Name>]\n",
+	"	-r <Response List>\n",
 	"	-c <Covariates List>\n",
 	"	-t <Target Predictors>\n",
 	"	-o <Output Filename Root>\n",
@@ -52,7 +53,7 @@ usage = paste(
 	"\n", sep="");
 
 if(!(length(opt$factor_fn) && 
-	length(opt$responses_cn) &&
+	length(opt$responses_fn) &&
 	length(opt$covariates_fn) && 
 	length(opt$target_var_fn) && 
 	length(opt$outputroot)
@@ -62,7 +63,7 @@ if(!(length(opt$factor_fn) &&
 }
 
 FactorsFile=opt$factor_fn;
-ResponseColname=opt$responses_cn;
+ResponsesFile=opt$responses_fn;
 CovariatesFile=opt$covariates_fn;
 TargetVarFile=opt$target_var_fn;
 OutputRoot=opt$outputroot;
@@ -80,7 +81,7 @@ cat(script_name, "\n", sep="");
 cat("\n");
 cat("      Factors File: ", FactorsFile, "\n", sep="");
 cat("Subject ID Colname: ", SubjectIDColname, "\n", sep="");
-cat(" Responses Colname: ", ResponseColname, "\n", sep="");
+cat("    Responses File: ", ResponsesFile, "\n", sep="");
 cat("   Covariates File: ", CovariatesFile, "\n", sep="");
 cat("  Targ. Var.  File: ", TargetVarFile, "\n", sep="");
 cat("       Output Root: ", OutputRoot, "\n", sep="");
@@ -99,83 +100,6 @@ load_list=function(filename){
 	return(val);
 }
 
-plot_text=function(strings, max_lines_pp=Inf, oma_tag=""){
-
-        orig.par=par(no.readonly=T);
-
-        par(mfrow=c(1,1));
-        par(family="Courier");
-
-	if(oma_tag==""){
-		par(oma=rep(.5,4));
-	}else{
-		par(oma=c(1, .5, .5, .5));
-	}
-
-        par(mar=rep(0,4));
-
-        num_lines=length(strings);
-        num_pages=max(1, ceiling(num_lines/max_lines_pp));
-
-        cat("Num Pages for ", num_lines, " lines: ", num_pages, "\n", sep="");
-
-        lines_pp=min(num_lines, max_lines_pp);
-        for(p in 1:num_pages){
-
-                top=max(as.integer(lines_pp), 52);
-	
-                plot(0,0, xlim=c(0,top), ylim=c(0,top), type="n",  xaxt="n", yaxt="n",
-                        xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                        );
-
-		if(oma_tag!=""){
-			mtext(paste("[", oma_tag, "]", sep=""), side=1, col="grey25");
-		}
-
-                text_size=max(.01, min(.7, .7 - .003*(lines_pp-52)));
-                #print(text_size);
-
-                start=(p-1)*lines_pp+1;
-                end=start+lines_pp-1;
-                end=min(end, num_lines);
-                line=1;
-                for(i in start:end){
-                        #cat(strings[i], "\n", sep="");
-                        strings[i]=gsub("\t", "", strings[i]);
-                        text(0, top-line, strings[i], pos=4, cex=text_size);
-                        line=line+1;
-                }
-
-        }
-
-        par(orig.par);
-}
-
-plot_title_page=function(title, subtitle=""){
-
-        orig.par=par(no.readonly=T);
-        par(family="serif");
-        par(mfrow=c(1,1));
-
-        plot(0,0, xlim=c(0,1), ylim=c(0,1), type="n",  xaxt="n", yaxt="n",
-                xlab="", ylab="", bty="n", oma=c(1,1,1,1), mar=c(0,0,0,0)
-                );
-
-        # Title
-        title_cex=3;
-        title_line=1;
-        text(0.5, title_line, title, cex=title_cex, font=2, adj=c(.5,1));
-
-        # Subtitle
-        num_subt_lines=length(subtitle);
-        cxy=par()$cxy;
-        for(i in 1:num_subt_lines){
-                text(.5, title_line -title_cex*cxy[2] -i*cxy[2], subtitle[i], adj=.5);
-        }
-
-        par(orig.par);
-}
-
 ##############################################################################
 ##############################################################################
 
@@ -184,25 +108,28 @@ available_variables=colnames(factors_loaded);
 
 targets_arr=load_list(TargetVarFile);
 covariates_arr=load_list(CovariatesFile);
+responses_arr=load_list(ResponsesFile);
 
 num_targets=length(targets_arr);
 num_covariates=length(covariates_arr);
+num_responses=length(responses_arr);
 
 pdf(paste(OutputRoot, ".uni_lasso.pdf", sep=""), height=11, width=9.5);
 
 plot_text(params);
 
 plot_text(c(
-	paste("Target Vars (", num_targets, "):", sep=""),
-	capture.output(print(targets_arr)),
+	paste("Responses [y] (", num_responses, "): ", sep=""),
+	capture.output(print(responses_arr)),
 	"",
-	paste("Covariates (", num_covariates, "):", sep=""),
+	paste("Covariates [Required x] (", num_covariates, "):", sep=""),
 	capture.output(print(covariates_arr)),
 	"",
-	paste("Responses: ", ResponseColname, sep="")
+	paste("Target Vars [Selectable x] (", num_targets, "):", sep=""),
+	capture.output(print(targets_arr))
 ));
 
-all_used_variables=c(targets_arr, ResponseColname, covariates_arr);
+all_used_variables=c(targets_arr, responses_arr, covariates_arr);
 
 missing_variables=setdiff(all_used_variables, available_variables);
 if(length(missing_variables)>0){
@@ -214,22 +141,32 @@ if(length(missing_variables)>0){
 }
 
 factors_used=factors_loaded[,all_used_variables];
+nonas=apply(factors_used, 1, function(x){ all(!is.na(x));});
+factors_used=factors_used[nonas,,drop=F];
 
 ###############################################################################
 
-cat("\nTargets:\n");
-print(targets_arr);
+cat("\nResponses:\n");
+print(responses_arr);
+
 cat("\nCovariates:\n");
 print(covariates_arr);
-cat("\nResponse:\n");
-print(ResponseColname);
+
+cat("\nTargets:\n");
+print(targets_arr);
 cat("\n");
+
+###############################################################################
+# Generate correlation heat map 
+
+response_matrix=factors_used[,responses_arr];
+resp_corr=cor(response_matrix);
+paint_matrix(resp_corr, "Response Correlation Matrix", plot_min=-1, plot_max=1,
+	deci_pts=2, label_zeros=F, show_leading_zero=F);
 
 ###############################################################################
 
 num_targets=length(targets_arr);
-
-coef_list=list();
 
 par(mfrow=c(3,1));
 par(mar=c(5,5,7,1));
@@ -238,267 +175,383 @@ num_folds=10;
 registerDoMC(num_folds);
 
 #-----------------------------------------------------------------------------
-# Remove NAs
-x=factors_loaded[,c(covariates_arr, targets_arr),drop=F];
-y=factors_loaded[,ResponseColname, drop=F];
 
-#cat("X:\n");
-#print(x);
-
-#cat("Y:\n");
-#print(y);
-
-nonas=apply(cbind(x,y), 1, function(x){ all(!is.na(x));});
-x=x[nonas,,drop=F];
-
-y=unlist(y[nonas, ResponseColname, drop=F]);
-
-
-#-----------------------------------------------------------------------------
-
-layout_mat=matrix(c(1,1,2,3,4), ncol=1);
-layout(layout_mat);
-
-yexp=exp(y);
-ylog=log(y);
-ysqrt=sqrt(y);
-
-y_normp=shapiro.test(y)$p.val;
-yexp_normp=shapiro.test(yexp)$p.val;
-ylog_normp=shapiro.test(ylog)$p.val;
-ysqrt_normp=shapiro.test(ysqrt)$p.val;
-
-par(mar=c(5,5,5,2));
-hist(y, main=ResponseColname, breaks=20, cex.main=2, 
-	col=ifelse(y_normp<.1, "red", "green"));
-title(main=sprintf("Shapiro-Wilks P-value: %3.4f", y_normp), line=0, cex.main=.95, font.main=3);
-
-par(mar=c(6,8,6,8));
-hist(yexp, main=paste("exp(", ResponseColname, ")", sep=""), breaks=20, cex.main=1.2,
-	col=ifelse(yexp_normp<.1, "pink", "lightgreen"));
-title(main=sprintf("Shapiro-Wilks P-value: %3.4f", yexp_normp), line=1.2, cex.main=.95, font.main=3);
-
-hist(ylog, main=paste("log(", ResponseColname, ")", sep=""), breaks=20, cex.main=1.2,
-	col=ifelse(ylog_normp<.1, "pink", "lightgreen"));
-title(main=sprintf("Shapiro-Wilks P-value: %3.4f", ylog_normp), line=1.2, cex.main=.95, font.main=3);
-
-hist(ysqrt, main=paste("sqrt(", ResponseColname, ")", sep=""), breaks=20, cex.main=1.2,
-	col=ifelse(ysqrt_normp<.1, "pink", "lightgreen"));
-title(main=sprintf("Shapiro-Wilks P-value: %3.4f", ysqrt_normp), line=1.2, cex.main=.95, font.main=3);
-
-#-----------------------------------------------------------------------------
-# Set up covariates as penalty free
-
-incl_cov=intersect(covariates_arr, colnames(x));
-num_incl_cov=length(incl_cov);
-
-num_predictors=ncol(x);
-
-cat("Num Predictors: ", num_predictors, "\n");
+num_predictors=num_covariates+num_targets;
+cat("Num Predictors (Cov + Targets): ", num_predictors, "\n");
 
 # Set up penalty factor for covariates, so no shrinkage is possible.
 penalty_fact_arr=rep(1, num_predictors);
-if(num_incl_cov>0){
-	penalty_fact_arr[1:num_incl_cov]=0.0;
+if(num_covariates>0){
+	penalty_fact_arr[1:num_covariates]=0.0;
 }
 
 cat("Penalty Factors: 0's for covariates (i.e. no shrinkage allowed):\n");
 print(penalty_fact_arr);
 
 #-----------------------------------------------------------------------------
+
+reorder_coefficients=function(coef_tab, cov_arr){
+
+	coef_names=rownames(coef_tab);
+	other_preds=setdiff(coef_names, c("(Intercept)", cov_arr));
+	num_other_preds=length(other_preds);
+	num_cov=length(cov_arr);
+	
+	out_tab=matrix(NA, nrow=0, ncol=ncol(coef_tab));
+	colnames(out_tab)=colnames(coef_tab);
+
+	out_tab=rbind(out_tab, coef_tab["(Intercept)",,drop=F]);
+
+	if(num_cov>0){
+		out_tab=rbind(out_tab, coef_tab[cov_arr,,drop=F]);
+	}
+
+	if(num_other_preds>0){
+		other_preds_tab=coef_tab[other_preds,,drop=F];
+		other_preds_tab_sorted=other_preds_tab[order(other_preds_tab[,"Pr(>|t|)"]),,drop=F];
+		out_tab=rbind(out_tab, other_preds_tab_sorted);
+	}
+
+	return(out_tab);
+
+}
+
+#-----------------------------------------------------------------------------
 # Run cv.glmnet
 
 lasso_family="gaussian";
 
-cat("Set Cross Validation Seed to: ", CVSeed, "\n");
-set.seed(CVSeed);
+lasso_stats_hdr=c("NumSgnfCov", "NumSgnfSelected");
+summary_matrix=matrix(0, ncol=length(lasso_stats_hdr), nrow=num_responses);
 
-cat("CrossValidation GLMNet:\n");
-x=as.matrix(x);
-y=as.matrix(y);
-cvfit=cv.glmnet(x, y, family=lasso_family, 
-	parallel=TRUE,
-	nfolds=num_folds,
-	keep=TRUE, # Keep fold information
-	penalty.factor=penalty_fact_arr);
+cumulative_AIC=list();
+cumulative_num_pred_sel=list();
 
-# Gives minimum mean CV error
-mindev_lambda=cvfit$lambda.min;
-log_mindev_lambda=log(mindev_lambda);
+for(response_name in responses_arr){
 
-# Gives less regularized/penalized (more selected variables) within 1se of lowest 
-stricter_lambda=cvfit$lambda.1se;
-log_stricter_lambda=log(stricter_lambda);
+	par(oma=c(0,0,0,0));
+	par(mar=c(10,0,10,0));
+	plot_title_page(response_name);
 
-# Looser lambda
-log_looser_lambda=log_mindev_lambda - (log_stricter_lambda-log_mindev_lambda);
-looser_lambda=exp(log_looser_lambda);
+	y=factors_used[,response_name];
 
-msg_lambda=capture.output({
-	cat("Cross Validation Randomization Seed: ", CVSeed, "\n");
-	cat("Min Deviation Lambda: ", mindev_lambda, 
-		"  Log():", log_mindev_lambda, "\n", sep="");
-	cat("Stricter Deviation Lambda: ", stricter_lambda, 
-		"  Log():", log_stricter_lambda, "\n", sep="");
-	cat("Looser Deviation Lambda: ", looser_lambda, 
-		"  Log():", log_looser_lambda, "\n", sep="");
-});
-print(msg_lambda);
-plot_text(msg_lambda);
+	#-----------------------------------------------------------------------------
 
-#-----------------------------------------------------------------------------
-# Get the coefficients (selected predictors will have non-zero coefficients)
+	yexp=exp(y);
+	ylog=log(y);
+	ysqrt=sqrt(y);
 
-coef_tabs=list();
-coef_tabs[["Loose"]]=coef(cvfit, looser_lambda);
-coef_tabs[["Mindev"]]=coef(cvfit, mindev_lambda);
-coef_tabs[["Strict"]]=coef(cvfit, stricter_lambda);
+	y_normp=shapiro.test(y)$p.val;
+	yexp_normp=shapiro.test(yexp)$p.val;
+	ylog_normp=shapiro.test(ylog)$p.val;
+	ysqrt_normp=shapiro.test(ysqrt)$p.val;
 
-cutoffs=c("Loose", "Mindev", "Strict");
+	layout_mat=matrix(c(1,1,2,3,4), ncol=1);
+	layout(layout_mat);
 
-coef_mat=matrix(numeric(), nrow=length(targets_arr), ncol=length(cutoffs));
-colnames(coef_mat)=cutoffs;
-rownames(coef_mat)=targets_arr;
+	par(mar=c(5,5,5,2));
+	hist(y, main=response_name, breaks=20, cex.main=2, 
+		col=ifelse(y_normp<.1, "red", "green"));
+	title(main=sprintf("Shapiro-Wilks P-value: %3.4f", y_normp), line=0, cex.main=.95, font.main=3);
 
-for(cutoff in cutoffs){
-	coefs=coef_tabs[[cutoff]];
-	#cat("Cutoff: ", cutoff, "\n");
-	#print(coefs);
-	coef_mat[targets_arr,cutoff]=coefs[targets_arr,1];
+	par(mar=c(6,8,6,8));
+	hist(yexp, main=paste("exp(", response_name, ")", sep=""), breaks=20, cex.main=1.2,
+		col=ifelse(yexp_normp<.1, "pink", "lightgreen"));
+	title(main=sprintf("Shapiro-Wilks P-value: %3.4f", yexp_normp), line=1.2, cex.main=.95, font.main=3);
 
-}
+	hist(ylog, main=paste("log(", response_name, ")", sep=""), breaks=20, cex.main=1.2,
+		col=ifelse(ylog_normp<.1, "pink", "lightgreen"));
+	title(main=sprintf("Shapiro-Wilks P-value: %3.4f", ylog_normp), line=1.2, cex.main=.95, font.main=3);
 
-cat("\n");
-cat("Coefficients Matrix:\n");
-print(coef_mat);
+	hist(ysqrt, main=paste("sqrt(", response_name, ")", sep=""), breaks=20, cex.main=1.2,
+		col=ifelse(ysqrt_normp<.1, "pink", "lightgreen"));
+	title(main=sprintf("Shapiro-Wilks P-value: %3.4f", ysqrt_normp), line=1.2, cex.main=.95, font.main=3);
 
-selected_var=apply(coef_mat, 2, function(x){sum(x!=0);});
-cat("\n");
-cat("Num of Variables Selected:\n");
-print(selected_var);
+	#-----------------------------------------------------------------------------
 
+	cat("Set Cross Validation Seed to: ", CVSeed, "\n");
+	set.seed(CVSeed);
 
-par(mfrow=c(2,1));
-#-----------------------------------------------------------------------------
-# Plot and annotate cross validation deviances
-cat("Plotting CV: Lambda vs. Deviance...\n");
-plot(cvfit);
-title(main=paste("Response: ", ResponseColname, sep=""), line=4);
-title(main=paste("Num Variables Selected (including ", num_incl_cov, " required covariates)", 
-	sep=""), line=2.1, cex.main=1, font.main=1);
+	cat("Run CV GLMNet:\n");
+	y=factors_used[,response_name];
+	x=as.matrix(factors_used[,c(covariates_arr, targets_arr)]);
 
-abline(v=log_looser_lambda, lty="dotted");
-
-axis(side=3, at=log_stricter_lambda, labels="Stricter", 
-	cex=.3, line=-1, col.axis="blue", tick=F);
-axis(side=3, at=log_mindev_lambda, labels="MinDev", 
-	cex=.3, line=-1, col.axis="black", tick=F);
-axis(side=3, at=log_looser_lambda, labels="Looser", 
-	cex=.3, line=-1, col.axis="green", tick=F);
-
-#-----------------------------------------------------------------------------
-# Variable counts per response
-cat("Plotting Selected Variables Per Level/Categories...\n");
-NumStrict=selected_var["Strict"];
-NumMedium=selected_var["Mindev"];
-NumLoose=selected_var["Loose"];
-
-mids=barplot(c(NumLoose, NumMedium, NumStrict),
-	ylim=c(0, num_targets+1),
-	main=paste("Response: ", ResponseColname, sep=""),
-	las=2,
-	col=c("green", "black", "blue"));
-text(mids, 
-	c(NumLoose, NumMedium, NumStrict), 
-	labels=c(
-		sprintf("%i (%3.1f %%)", NumLoose, NumLoose/num_targets*100),
-		sprintf("%i (%3.1f %%)", NumMedium, NumMedium/num_targets*100), 
-		sprintf("%i (%3.1f %%)", NumStrict, NumStrict/num_targets*100)), 
-	pos=3);
-abline(h=num_targets, col="black", lwd=1);
-axis(side=2, at=num_targets, labels=paste("Targets: ", num_targets, sep=""),
-	las=2, cex.axis=.7);
-
-
-#-----------------------------------------------------------------------------
-# Accumulate across all responses
-
-stict_var_arr=names(coef_mat[coef_mat[,"Strict"]!=0,"Strict"]);
-medium_var_arr=names(coef_mat[coef_mat[,"Mindev"]!=0,"Mindev"]);
-loose_var_arr=names(coef_mat[coef_mat[,"Loose"]!=0,"Loose"]);
-
-varlist=list("Strict"=stict_var_arr, "Mindev"=medium_var_arr, "Loose"=loose_var_arr);
-
-par(mfrow=c(1,1));
-
-for(c_ix in cutoffs){
-
-	# Get variable list by cutoff
-	var_arr=varlist[[c_ix]];
+	cvfit=cv.glmnet(x, y, family=lasso_family, 
+		parallel=TRUE,
+		nfolds=num_folds,
+		keep=TRUE, # Keep fold information
+		penalty.factor=penalty_fact_arr);
+	cat("CV GLMNet Done.\n");
 	
-	# Fit model to confirm selected variables
-	model_str=paste("y ~ ", paste(c(covariates_arr, var_arr), collapse="+"), sep="");
-	print(model_str);
-	fit=lm(as.formula(model_str), data=as.data.frame(cbind(y,x)));
-	sumfit=summary(fit);
+	#----------------------------------------------------------------------
 
-	#cat("[FIT]------------------------------------------------------>>\n");
-	#print(fit);
-	#cat("[FIT]------------------------------------------------------<<\n");
-	#print(names(fit));
+	# Gives minimum mean CV error
+	mindev_lambda=cvfit$lambda.min;
+	log_mindev_lambda=log(mindev_lambda);
 
-	#cat("[SUM_FIT]------------------------------------------------------>>\n");
-	#print(sumfit);
-	#cat("[SUM_FIT]------------------------------------------------------<<\n");
-	#print(names(sumfit));
+	# Gives less regularized/penalized (more selected variables) within 1se of lowest 
+	stricter_lambda=cvfit$lambda.1se;
+	log_stricter_lambda=log(stricter_lambda);
 
-	#print(sumfit$coefficients);
-	sumfit$coefficients=sumfit$coefficients[order(sumfit$coefficients[,"Pr(>|t|)"]),];
-	#print(sumfit);
-	print(sumfit);
+	# Looser lambda
+	log_looser_lambda=log_mindev_lambda - (log_stricter_lambda-log_mindev_lambda);
+	looser_lambda=exp(log_looser_lambda);
 
-	sumfit_txt=capture.output({print(sumfit)});
-	# Output Coefficients/Pvalues Table
-	plot_text(c(
-		paste("Cutoff: ", c_ix, sep=""),
-		sumfit_txt
-		));
+	msg_lambda=capture.output({
+		cat("Cross Validation Randomization Seed: ", CVSeed, "\n");
+		cat("Min Deviation Lambda: ", mindev_lambda, 
+			"  Log():", log_mindev_lambda, "\n", sep="");
+		cat("Stricter Deviation Lambda: ", stricter_lambda, 
+			"  Log():", log_stricter_lambda, "\n", sep="");
+		cat("Looser Deviation Lambda: ", looser_lambda, 
+			"  Log():", log_looser_lambda, "\n", sep="");
+	});
+	print(msg_lambda);
+	plot_text(msg_lambda);
 
-	# Plot obs/pred points
-	obspred_rng=range(c(y, fit$fitted.values));
-	plot(y, fit$fitted.values, xlab="Observed", ylab="Predicted",
-		xlim=obspred_rng, ylim=obspred_rng, main=c_ix
-		);
+	#-----------------------------------------------------------------------------
+	# Get the coefficients (selected predictors will have non-zero coefficients)
 
-	# Draw reference and obs/pred lines
-	model_fit=lm(fit$fitted.values~y);
-	abline(a=0, b=1, col="blue", lty="dashed");
-	abline(model_fit, col="black");
+	coef_tabs=list();
+	coef_tabs[["Loose"]]=coef(cvfit, looser_lambda);
+	coef_tabs[["Mindev"]]=coef(cvfit, mindev_lambda);
+	coef_tabs[["Strict"]]=coef(cvfit, stricter_lambda);
 
-	# Output selected variable list
-	if(length(var_arr)){
+	cutoffs=c("Loose", "Mindev", "Strict");
 
-		outvarlist_fn=paste(OutputRoot, ".", c_ix, ".lst", sep="");
-		writeLines(
-			var_arr, 
-			outvarlist_fn
-			);
+	coef_mat=matrix(numeric(), nrow=length(targets_arr), ncol=length(cutoffs));
+	colnames(coef_mat)=cutoffs;
+	rownames(coef_mat)=targets_arr;
 
-		outvarfactors_fn=paste(OutputRoot, ".", c_ix, ".tsv", sep="");
+	for(cutoff in cutoffs){
+		coefs=coef_tabs[[cutoff]];
+		#cat("Cutoff: ", cutoff, "\n");
+		#print(coefs);
+		coef_mat[targets_arr,cutoff]=coefs[targets_arr,1];
 
-		out_table=cbind(rownames(factors_loaded), factors_loaded[,var_arr,drop=F]);
-		colnames(out_table)=c(SubjectIDColname, var_arr);
-		
-		# Output factors with selected variables only
-		write.table(
-			out_table,
-			outvarfactors_fn,
-			sep="\t", quote=F,
-			row.names=F, col.names=T
-			);
 	}
+
+	cat("\n");
+	#cat("Coefficients Matrix:\n");
+	#print(coef_mat);
+
+	selected_var=apply(coef_mat, 2, function(x){sum(x!=0);});
+	cat("\n");
+	cat("Num of Variables Selected:\n");
+	print(selected_var);
+
+
+	par(mfrow=c(2,1));
+	#-----------------------------------------------------------------------------
+	# Plot and annotate cross validation deviances
+	cat("Plotting CV: Lambda vs. Deviance...\n");
+	plot(cvfit);
+	title(main=paste("Response: ", response_name, sep=""), line=4);
+	title(main=paste("Num Variables Selected (including ", num_covariates, " required covariates)", 
+		sep=""), line=2.1, cex.main=1, font.main=1);
+
+	abline(v=log_looser_lambda, lty="dotted");
+
+	axis(side=3, at=log_stricter_lambda, labels="Stricter", 
+		cex=.3, line=-1, col.axis="blue", tick=F);
+	axis(side=3, at=log_mindev_lambda, labels="MinDev", 
+		cex=.3, line=-1, col.axis="black", tick=F);
+	axis(side=3, at=log_looser_lambda, labels="Looser", 
+		cex=.3, line=-1, col.axis="green", tick=F);
+
+	#-----------------------------------------------------------------------------
+	# Variable counts per response
+	cat("Plotting Selected Variables Per Level/Categories...\n");
+	NumStrict=selected_var["Strict"];
+	NumMedium=selected_var["Mindev"];
+	NumLoose=selected_var["Loose"];
+
+	cumulative_num_pred_sel[[response_name]]=selected_var;
+	
+
+	mids=barplot(c(NumLoose, NumMedium, NumStrict),
+		ylim=c(0, num_targets+1),
+		main=paste("Response: ", response_name, sep=""),
+		las=2,
+		col=c("green", "black", "blue"));
+	text(mids, 
+		c(NumLoose, NumMedium, NumStrict), 
+		labels=c(
+			sprintf("%i (%3.1f %%)", NumLoose, NumLoose/num_targets*100),
+			sprintf("%i (%3.1f %%)", NumMedium, NumMedium/num_targets*100), 
+			sprintf("%i (%3.1f %%)", NumStrict, NumStrict/num_targets*100)), 
+		pos=3);
+	abline(h=num_targets, col="black", lwd=1);
+	axis(side=2, at=num_targets, labels=paste("Targets: ", num_targets, sep=""),
+		las=2, cex.axis=.7);
+
+
+	#-----------------------------------------------------------------------------
+	# Accumulate across all responses
+
+	stict_var_arr=names(coef_mat[coef_mat[,"Strict"]!=0,"Strict"]);
+	medium_var_arr=names(coef_mat[coef_mat[,"Mindev"]!=0,"Mindev"]);
+	loose_var_arr=names(coef_mat[coef_mat[,"Loose"]!=0,"Loose"]);
+
+	varlist=list("Strict"=stict_var_arr, "Mindev"=medium_var_arr, "Loose"=loose_var_arr);
+
+	par(mfrow=c(1,1));
+	summary_lines_list=list();
+	summary_lines_array=c();
+	num_summary_lines=0;
+
+	cumulative_AIC[[response_name]]=list();
+	for(c_ix in cutoffs){
+
+		# Get variable list by cutoff
+		var_arr=varlist[[c_ix]];
+		cumulative_AIC[[response_name]][[c_ix]]=list();
+
+		# Fit covariates only model
+		reduced_model_str=paste("y ~ ", paste(c(covariates_arr), collapse="+"), sep="");
+		print(reduced_model_str);
+		reduced_fit=glm(as.formula(reduced_model_str), data=as.data.frame(cbind(y,x)));
+		reduced_sumfit=summary(reduced_fit);
+		cumulative_AIC[[response_name]][[c_ix]][["reduced"]]=reduced_sumfit$aic;
+		
+		# Fit model to confirm selected variables
+		model_str=paste("y ~ ", paste(c(covariates_arr, var_arr), collapse="+"), sep="");
+		print(model_str);
+		fit=glm(as.formula(model_str), data=as.data.frame(cbind(y,x)));
+		sumfit=summary(fit);
+		cumulative_AIC[[response_name]][[c_ix]][["full"]]=sumfit$aic;
+
+		#ordered_sumfit_table=sumfit$coefficients[order(sumfit$coefficients[,"Pr(>|t|)"]),];
+		ordered_sumfit_table=reorder_coefficients(sumfit$coefficients, covariates_arr);
+		printCoefmat(ordered_sumfit_table);
+		sumfit_txt=capture.output({printCoefmat(ordered_sumfit_table, quotes=F)});	
+
+		# Output Coefficients/Pvalues Table
+		summary_lines_list[[c_ix]]=c(
+			paste("Response: ", response_name, sep=""),
+			paste("Cutoff: ", c_ix, sep=""),
+			"",
+			sumfit_txt
+			);
+
+		summary_lines_array=c(summary_lines_array, rep(" ", 5), summary_lines_list[[c_ix]]);
+	}
+
+	if(length(summary_lines_array)<70){
+		plot_text(summary_lines_array);	
+	}else{
+		for(c_ix in cutoffs){
+			plot_text(summary_lines_list[[c_ix]]);
+		}	
+	}
+
+	#-----------------------------------------------------------------------------
+
+	par(oma=c(2,2,4,2));
+	par(mfrow=c(1,3));
+	par(mar=c(24,3,24,1));
+	for(c_ix in cutoffs){
+
+		# Get variable list by cutoff
+		var_arr=varlist[[c_ix]];
+
+		# Fit model to confirm selected variables
+		model_str=paste("y ~ ", paste(c(covariates_arr, var_arr), collapse="+"), sep="");
+		print(model_str);
+		fit=lm(as.formula(model_str), data=as.data.frame(cbind(y,x)));
+		sumfit=summary(fit);
+
+		# Plot obs/pred points
+		obspred_rng=range(c(y, fit$fitted.values));
+		plot(y, fit$fitted.values, xlab="Observed", ylab="Predicted",
+			xlim=obspred_rng, ylim=obspred_rng, main=""
+			);
+		title(main=c_ix, line=3, cex.main=3);
+
+		# Draw reference and obs/pred lines
+		model_fit=lm(fit$fitted.values~y);
+		abline(a=0, b=1, col="blue", lty="dashed");
+		abline(model_fit, col="black");
+
+		# Output selected variable list
+		if(length(var_arr)){
+
+			outvarlist_fn=paste(OutputRoot, ".", response_name, ".", c_ix, ".lst", sep="");
+			writeLines(
+				var_arr, 
+				outvarlist_fn
+				);
+
+			outvarfactors_fn=paste(OutputRoot, ".", response_name, ".",  c_ix, ".tsv", sep="");
+
+			
+			out_table=cbind(rownames(factors_loaded), factors_loaded[,var_arr,drop=F]);
+			colnames(out_table)=c(SubjectIDColname, var_arr);
+			
+			# Output factors with selected variables only
+			write.table(
+				out_table,
+				outvarfactors_fn,
+				sep="\t", quote=F,
+				row.names=F, col.names=T
+				);
+		}
+	}
+	mtext(response_name, side=3, line=0, outer=T, cex=2, font=2);
+	
 }
 
+#------------------------------------------------------------------------------
+# Output Summary of Responses and Fits 
+
+par(oma=c(0,0,0,0));
+par(mar=c(10,0,10,0));
+plot_title_page("Summary across Responses");
+
+# Convert num_pred_sel to matrix
+#print(cumulative_num_pred_sel);
+num_pred_sel_mat=matrix(unlist(cumulative_num_pred_sel), ncol=3, byrow=T);
+rownames(num_pred_sel_mat)=names(cumulative_num_pred_sel);
+colnames(num_pred_sel_mat)=names(cumulative_num_pred_sel[[1]]);
+print(num_pred_sel_mat);
+
+nonzero=apply(num_pred_sel_mat, 1, function(x){sum(x)>0;});
+nz_num_pred_sel_mat=num_pred_sel_mat[nonzero,,drop=F];
+print(nz_num_pred_sel_mat);
+
+plot_text(c(
+	"Num Predictors Selected:",
+	capture.output({print(num_pred_sel_mat, quotes=F)}),
+	"",
+	"",
+	"Nonzero Filtered:",
+	capture.output({print(nz_num_pred_sel_mat, quotes=F)})
+));
+
+cat("\n\n");
+
+#------------------------------------------------------------------------------
+
+# Convert AIC to matrix
+#print(cumulative_AIC);
+aic_mat=matrix(unlist(cumulative_AIC), ncol=6, byrow=T);
+rownames(aic_mat)=names(cumulative_AIC);
+aic_mat=aic_mat[,c(1,2,4,6)];
+colnames(aic_mat)=c("Reduced", "Loose", "MinDev", "Strict");
+print(aic_mat);
+
+wdiff=apply(aic_mat, 1, function(x){ any(x!=x[1])});
+aic_mat_wdiff=aic_mat[wdiff,,drop=F];
+print(aic_mat_wdiff);
+
+plot_text(c(
+	"AIC Summary:",
+	capture.output({print(aic_mat, quotes=F)}),
+	"",
+	"",
+	"AIC w/ Diff From Reduced",
+	capture.output({print(aic_mat_wdiff, quotes=F)})
+));
 
 ###############################################################################
 
