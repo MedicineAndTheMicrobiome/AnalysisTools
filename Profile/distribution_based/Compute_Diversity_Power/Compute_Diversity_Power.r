@@ -204,7 +204,7 @@ print(diversity_arr);
 # Determine which effect sizes to try
 range=range(diversity_arr);
 span=diff(range);
-effect_sizes=seq(0, span, length.out=40);
+effect_sizes=seq(1/40, span, length.out=40);
 
 cat("The range of diversity: ", range[1], "-", range[2], "\n");
 cat("The span: ", span, "\n");
@@ -213,10 +213,10 @@ cat("Computing power over: \n");
 print(effect_sizes);
 cat("\n");
 
-N1_range=2:40;
+N1_range=2:80;
 
 if(N==0){
-	N1_range=2:40;
+	N1_range=2:80;
 }else{
 	N1_range=N;
 }
@@ -252,6 +252,9 @@ for(effect_size in effect_sizes){
 	cat("Diversity Effect Size: ", effect_size, "  Cohen's Eta^2: ", r_sqrd, "\n");
 	
 	calc_next_effect=F;
+
+	num_solutions=0;
+
 	for(N1 in N1_range){
 		
 		N2=ifelse(M==0,N1,M);
@@ -261,12 +264,35 @@ for(effect_size in effect_sizes){
 		#cat("Effect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
 
 		if(beta_at_alpha < Beta){
-			cat("\tEffect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, " (1-beta): ", 1-beta_at_alpha, "\n", sep="");
+
+			if(r_sqrd<=.02){
+				tag="Small";
+			}else if(r_sqrd<=.075){
+				tag="Medium-Small";
+			}else if(r_sqrd<=.13){
+				tag="Medium";
+			}else if(r_sqrd<=.195){
+				tag="Medium-Large";
+			}else if(r_sqrd<=.26){
+				tag="Large";
+			}else{
+				tag="Very Large";
+			}
+
+			cat("\tEffect Size: ", effect_size, " N1: ", N1, "  N2: ", N2, 
+				" (1-beta): ", 1-beta_at_alpha, "\n", sep="");
+
 			cat(file=out_fh,
 				paste(
 					round(r_sqrd, 4),
 					round(effect_size, 4),
-					N1, N2, Alpha, 1-beta_at_alpha, sep=","), "\n", sep="");
+					N1, N2, Alpha, 1-beta_at_alpha, tag, sep=","), "\n", sep="");
+
+			num_solutions=num_solutions+1;
+
+			if(num_solutions>4){
+				break;
+			}
 
 			calc_next_effect=T;
 			next;
