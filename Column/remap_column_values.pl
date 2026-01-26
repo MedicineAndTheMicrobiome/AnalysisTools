@@ -31,7 +31,7 @@ my $usage = "
 		[-a (commA delimited)]
 
 		Maps File Options
-		[-C <old key>,<new value>]
+		[-C <old key>,<new value>]	(default is column 0,1)
 
 		Optimization options
 		[-f (Build hash out of ID's in specified column, then only load those IDs from the Map file)]
@@ -209,7 +209,7 @@ if(!$Preread){
 		my @fields=split /\t/, $_;
 
 		my $key=$fields[$AltColKey];
-		my $val=$fields[$AltColNew];
+		my $val=join "\t", @fields[$AltColNew .. $#fields];
 
 		if($val ne ""){
 			$map{$key}=$val;
@@ -228,7 +228,7 @@ if(!$Preread){
 		my @fields=split /\t/, $_;
 
 		my $key=$fields[$AltColKey];
-		my $val=$fields[$AltColNew];
+		my $val=join "\t", @fields[$AltColNew .. $#fields];
 
 		if(defined($map{$key})){
 			if($val ne ""){
