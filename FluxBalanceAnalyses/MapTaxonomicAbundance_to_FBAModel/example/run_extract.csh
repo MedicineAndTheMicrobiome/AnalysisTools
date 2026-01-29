@@ -14,6 +14,7 @@ if(1)then
 	-c 0.001 \
 	-o AQXX.kraken.bracken.joint.selected
 
+cat g_to_model.map override.map > model_cat.map
 
 ~/git/AnalysisTools/Profile/SummaryTableUtilities/Rename_Summary_Table_Categories.pl \
 	-i AQXX.kraken.bracken.joint.selected.mincutoff_0.001.summary_table.tsv \
