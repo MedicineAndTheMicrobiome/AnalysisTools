@@ -905,15 +905,8 @@ if(!is.null(FactorFileName)){
 	colnames(guess_mat)=paste("ID", 1:max_tokens, sep="");
 	orig_factors_mat=guess_mat;
 	print(orig_factors_mat);
-
 		
 }
-#print(factors_mat);
-
-# Append depths to factors
-tmp_samp_ids=rownames(orig_factors_mat);
-log10_sample_depths=log10(sample_depths[tmp_samp_ids]);
-orig_factors_mat=cbind(log10_sample_depths, orig_factors_mat);
 
 ###############################################################################
 
@@ -935,6 +928,10 @@ cat("Number of Shared Samples: ", num_shared, "\n");
 
 factors_mat=orig_factors_mat[shared,, drop=F];
 counts_mat=orig_counts_mat[shared,, drop=F];
+
+# Append depths to factors
+log10_sample_depths=log10(sample_depths[shared]);
+factors_mat=cbind(factors_mat, log10_sample_depths);
 
 ###############################################################################
 
