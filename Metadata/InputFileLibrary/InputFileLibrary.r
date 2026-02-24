@@ -732,7 +732,7 @@ match_to_index=function(values_arr, targets_arr){
 	return(matches);
 }
 
-recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname){
+recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname, mesg){
 
 	# Reconcile by Sample IDs
 
@@ -756,7 +756,9 @@ recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname){
 
 
 
-recon_factor_to_pairs_to_sumtab=function(fact_mat, pr_mat, st_mat, f_subj_id_cname){
+recon_factor_to_pairs_to_sumtab=function(fact_mat, pr_mat, st_mat, f_subj_id_cname, f_samp_id_cname=NULL, mesg){
+
+	message(mesg);
 
 	# Factor <-> Pairs (By Subject ID)
 	fact_subj_ids=fact_mat[,f_subj_id_cname];
@@ -774,12 +776,19 @@ recon_factor_to_pairs_to_sumtab=function(fact_mat, pr_mat, st_mat, f_subj_id_cna
 	shared_samp_ids=intersect(c(out_pr_mat[,1],out_pr_mat[,2]), st_sample_ids);
 	out_st_mat=st_mat[shared_samp_ids,,drop=F];
 
-
 	# Pairs <-> Factor (By Subject ID)
 	pr_subject_ids=rownames(out_pr_mat);
 	fact_shared_subj_ix=match_to_index(out_fact_mat[,f_subj_id_cname], pr_subject_ids);
 	out_fact_mat=out_fact_mat[fact_shared_subj_ix,,drop=F];	 
 
+	if(!is.null(f_samp_id_cname)){
+		# Pairs <-> Factor (By Sample ID)
+		fact_sample_ids=fact_mat[,f_samp_id_cname];
+		out_pr_mat=intersect_pairings_map_by_keep_list(out_pr_mat, sample_id_keepers=fact_sample_ids);
+		st_sample_ids=rownames(out_st_mat);
+		shared_samp_ids=intersect(c(out_pr_mat[,1],out_pr_mat[,2]), st_sample_ids);
+		out_st_mat=st_mat[shared_samp_ids,,drop=F];
+	}
 
 	results=list();
 	results[["factor_mat"]]=out_fact_mat;
@@ -793,7 +802,7 @@ recon_factor_to_pairs_to_sumtab=function(fact_mat, pr_mat, st_mat, f_subj_id_cna
 
 
 reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pairs_mat"=NULL,
-	"factor_sbj_cname"=NULL, "factor_smp_cname"=NULL)){	
+	"factor_sbj_cname"=NULL, "factor_smp_cname"=NULL), mesg){	
 
 	# Summary Table Mat and Factor Mat must be specified.
 	# The Factor Mat must have a subject ID and sample ID column specified.
@@ -827,7 +836,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	if(!specified(pairs_mat)){
 		message("Reconcile Summary Table/Factors by shared sample IDs.");
 		reconned=recon_factor_to_sumtab(
-			factor_mat, summary_table_mat, factor_samp_id_cname);
+			factor_mat, summary_table_mat, factor_samp_id_cname, mesg);
 
 		summary_table_mat=reconned[["summary_table"]];
 		factor_mat=reconned[["factor_mat"]];
@@ -835,7 +844,7 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 		message("Reconcile Factors <-> Pairs <-> SummaryTable")
 		reconned=recon_factor_to_pairs_to_sumtab(
 			factor_mat, pairs_mat, summary_table_mat, 
-			factor_subj_id_cname);
+			factor_subj_id_cname, factor_samp_id_cname, mesg);
 
 		summary_table_mat=reconned[["summary_table"]];
 		factor_mat=reconned[["factor_mat"]];
@@ -1031,7 +1040,7 @@ load_and_reconcile_files=function(
 			sbj_smp_mat=sbj_smp_mat,
 			factor_sbj_cname=factors[["sbj_cname"]],
 			factor_smp_cname=factors[["smp_cname"]]
-			));
+			), "3/6 Performing Pre-NA Removal Reconcile");
 
 		recon_factors=reconciled_files[["factor_mat"]];
 
@@ -1090,7 +1099,8 @@ load_and_reconcile_files=function(
 
 			# Replace factor mat, but keep the other data/matrices the same
 			reconciled_files[["factor_mat"]]=factors_mat_nona;
-			reconciled_files=reconcile(reconciled_files);
+			reconciled_files=reconcile(
+				reconciled_files, "5/6 Reconciling after Factor NA remove (if necessary).");
 
 		});
 	}else{

@@ -552,14 +552,39 @@ model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 
 # Make the primary key for the factor mat the Sample ID for A
-if(FactorSampleIDName!=""){
-	rownames(factors)=factors[,FactorSampleIDName];
-	factors=factors[good_pairs_map[,A_subtrahend],,drop=F];
-}
+keyed=F;
 
 if(FactorSubjectIDName!=""){
-	rownames(factors)=factors[,FactorSubjectIDName];
+
+        subject_ids=as.character(factors[,FactorSubjectIDName]);
+
+        dup_sbj_id=duplicated(subject_ids);
+        if(any(dup_sbj_id)){
+                cat("Duplicated Subject IDs found.  Can not key off of FactorSubjectIDName.\n");
+                print(subject_ids[dup_sbj_id]);
+        }else{
+                rownames(factors)=factors[,FactorSubjectIDName,];
+                keyed=T;
+        }
+
 }
+
+# Assume using factors from A_subtrahend
+
+if(!keyed){
+        if(FactorSampleIDName!=""){
+
+                rownames(factors)=factors[,FactorSampleIDName];
+
+		tar_samp_ids=good_pairs_map[,A_subtrahend];
+		missing_tar_samp_ids=setdiff(tar_samp_ids, rownames(factors));
+
+                factors=factors[tar_samp_ids,];
+		rownames(factors)=factors[,FactorSubjectIDName];
+        }
+}
+
+# This code expects the factors to be keyed by subject ID
 
 write_file_report(input_files[["Report"]]);
 

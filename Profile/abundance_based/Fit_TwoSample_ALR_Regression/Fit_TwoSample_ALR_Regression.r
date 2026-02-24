@@ -581,13 +581,28 @@ required_arr=input_files[["RequiredVariables"]];
 
 # Make the primary key for the factor mat the Sample ID for A
 
-if(FactorSampleIDName!=""){
-	rownames(factors)=factors[,FactorSampleIDName];
-	factors=factors[good_pairs_map[,PredictorName],];
-}
+keyed=F;
 
 if(FactorSubjectIDName!=""){
-	rownames(factors)=factors[,FactorSubjectIDName,];
+
+	subject_ids=as.character(factors[,FactorSubjectIDName]);
+
+	dup_sbj_id=duplicated(subject_ids);
+	if(any(dup_sbj_id)){
+		cat("Duplicated Subject IDs found.  Can not key off of FactorSubjectIDName.\n");
+		print(subject_ids[dup_sbj_id]);
+	}else{
+		rownames(factors)=factors[,FactorSubjectIDName,];
+		keyed=T;
+	}
+	
+}
+
+if(!keyed){
+	if(FactorSampleIDName!=""){
+		rownames(factors)=factors[,FactorSampleIDName];
+		factors=factors[good_pairs_map[,PredictorName],];
+	}
 }
 
 write_file_report(input_files[["Report"]]);

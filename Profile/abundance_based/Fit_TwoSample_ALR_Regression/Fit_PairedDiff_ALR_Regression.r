@@ -619,16 +619,31 @@ good_pairs_map=input_files[["PairsMap"]];
 model_var_arr=input_files[["Covariates"]];
 required_arr=input_files[["RequiredVariables"]];
 
-
-if(FactorSampleIDName!=""){
-	rownames(factors)=factors[,FactorSampleIDName];
-	factors=factors[good_pairs_map[,A_subtrahend],];
-}
+keyed=F;
 
 if(FactorSubjectIDName!=""){
-	rownames(factors)=factors[,FactorSubjectIDName,];
+
+        subject_ids=as.character(factors[,FactorSubjectIDName]);
+
+        dup_sbj_id=duplicated(subject_ids);
+        if(any(dup_sbj_id)){
+                cat("Duplicated Subject IDs found.  Can not key off of FactorSubjectIDName.\n");
+                print(subject_ids[dup_sbj_id]);
+        }else{
+                rownames(factors)=factors[,FactorSubjectIDName,];
+                keyed=T;
+        }
+
 }
 
+# Assume using factors from A_subtrahend
+
+if(!keyed){
+        if(FactorSampleIDName!=""){
+                rownames(factors)=factors[,FactorSampleIDName];
+                factors=factors[good_pairs_map[,A_subtrahend],];
+        }
+}
 
 write_file_report(input_files[["Report"]]);
 
