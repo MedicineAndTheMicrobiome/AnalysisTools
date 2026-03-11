@@ -188,13 +188,18 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 	for(var in orig_colnames){
 		values=mat_val[,var];
 
-
 		log_transformed=F;
 		sqrt_transformed=F;
+		too_many_nas=F;
+		negative_values=F;
+		normal_enough=F;
+		all_identical=F;
 
 		num_unique_val=length(setdiff(unique(values), NA));
 		values_nona=values[!is.na(values)];
 		num_nona=length(values_nona);
+
+		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
 
 		if(!is.numeric(values_nona)){
 			cat("Error: Values not numeric for: ", var, "\n", sep="");
@@ -202,20 +207,21 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 		}
 
 		if(num_nona<=3){
-			cat("Not enough non NA values to measure normality.\n");
-			new_colnames=c(new_colnames, var);
-			next;
-		}
 
-		if(any(values_nona<0)){
+			cat("Not enough non NA values to measure normality, removing...\n");
+			new_name=paste("too_many_NAs_", var, sep="");
+			new_colnames=c(new_colnames, new_name);
+			delete_list=c(delete_list, new_name);
+			too_many_nas=T;
+
+		}else if(any(values_nona<0)){
+
 			cat("Negative values.  Skipping transformation.\n");
-			new_colnames=c(new_colnames, var);
-			next;
-		}
+			new_name=paste("orig_", var, sep="");
+			new_colnames=c(new_colnames, new_name);
+			negative_values=T;
 
-		cat("\n", var, ": Num Unique Values: ", num_unique_val, "\n");
-
-		if(num_unique_val>1){
+		}else if(num_unique_val>1){
 
 			test_res=shapiro.test(values);
 			test_log_res=NULL;
@@ -237,7 +243,8 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 					test_sqrt_res$p.value < test_res$p.value){
 					# Keep original
 					cat("  No Improvement: ", test_log_res$p.value, "\n");
-					new_colnames=c(new_colnames, paste("orig_", var, sep=""));
+					new_name=paste("orig_", var, sep="");
+					new_colnames=c(new_colnames, new_name);
 				}else{
 
 					cat("     Log p-val : ", test_log_res$p.value, "\n");
@@ -259,7 +266,9 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 				}
 			}else{
 				cat(" Normal enough. ", test_res$p.value, "\n");
-				new_colnames=c(new_colnames, var);
+				new_name=paste("orig_", var, sep="");
+				new_colnames=c(new_colnames, new_name);
+				normal_enough=T;
 			}
 
 		}else{
@@ -267,6 +276,7 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			new_name=paste("all_ident_", var, sep="");
 			new_colnames=c(new_colnames, new_name);
 			delete_list=c(delete_list, new_name);
+			all_identical=T;
 		}
 
 		if(plot_before_after){
@@ -284,8 +294,15 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 			}else{
 				plot(0,0, xlab="", ylab="", main="", xaxt="n", yaxt="n", bty="n", type="n");
 
-				if(test_res$p.value>pval_cutoff){
-					text(0,0, "Transform not necessary");
+
+				if(too_many_nas){
+					text(0,0, "Too many NAs to transform");
+				}else if(negative_values){
+					text(0,0, "Negative values. Cannot transform.");
+				}else if(normal_enough){
+					text(0,0, "Sufficiently Normal.  No transform attempted.");
+				}else if(all_identical){
+					text(0,0, "All values identical.  Variable deleted.");
 				}else{
 					text(0,0, "Transform not beneficial");
 				}
@@ -301,8 +318,6 @@ test_and_apply_log_transform=function(mat_val, pval_cutoff=.2, plot_before_after
 	if(plot_before_after){
 		par(orig_par);
 	}
-
-	
 
 	return(trans_mat);
 }
