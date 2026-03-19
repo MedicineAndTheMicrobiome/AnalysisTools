@@ -11,7 +11,7 @@ use vars qw($opt_f $opt_g $opt_r $opt_o $opt_p $opt_c $opt_m $opt_O $opt_R);
 use POSIX;
 use Cwd 'abs_path';
 
-my $MOTHUR_BIN="/usr/bin/mothur_1.44.1/mothur";
+my $MOTHUR_BIN="/usr/bin/mothur_1.48.5/mothur";
 
 my $PIPELINE_UTIL_PATH="$FindBin::Bin/pipeline_utilities";
 print STDERR "Path of Pipeline Utilities: $PIPELINE_UTIL_PATH\n";
@@ -54,8 +54,11 @@ my $CLASSIFICATION_CONFIDENCE_ANALYSIS_BIN="$POSTPIPELINE_TOOL_PATH/Analyze_Taxo
 
 # Compare positive controls against historical reference
 my $COMPARE_SAMPLES_TO_REFERENCE_BIN="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Compare_Samples_to_Reference.r";
-my $HISTORICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/historical.20220915.summary_table.tsv";
-my $THEORETICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Zymo_Con_Only.taxa.genus.summary_table.tsv";
+my $HISTORICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/historical.20260224.summary_table.tsv";
+my $THEORETICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Zymo_Con_Only.taxa.genus.silva_v138_2.summary_table.tsv";
+
+#my $HISTORICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/historical.20220915.summary_table.tsv";
+#my $THEORETICAL_POSITIVE_CONTROL_FILE="$POSTPIPELINE_TOOL_PATH/Compare_Samples_to_Reference/Zymo_Con_Only.taxa.genus.summary_table.tsv";
 
 #my $CURRENT_16S_ALIGNMENT=
 #	"/usr/local/devel/DAS/users/kli/SVN/DAS/16sDataAnalysis/trunk/16S_OTU_Generation/silva.nr_v119.align";
@@ -483,16 +486,32 @@ log_notes($notes_log_filename, "Cluster Cutoff (OTU): $clust_cutoff");
 
 ###############################################################################
 
+
 execute_mothur_cmd(
 	"unique.seqs",
-	"fasta=$in.fasta"
+	"fasta=$in.fasta,
+	format=name"
 );
+
 log_counts_names("$in.names", "After_1st_Unique");
 # Takes
 # 	IN.fasta
 # Makes 
 # 	IN.unique.fasta
 #	IN.names
+
+
+execute_mothur_cmd(
+	"count.seqs",
+	"name=$in.names,
+	group=$in.groups"
+);
+# Takes
+#       IN.names
+#	IN.groups
+# Makes
+#	IN.count_table w/ group info
+
 
 execute_mothur_cmd(
 	"align.seqs",
@@ -505,7 +524,7 @@ execute_mothur_cmd(
 # 	IN.unique.fasta
 # Makes
 # 	IN.unique.align
-#	IN.unique.align.report
+#	IN.unique.align_report
 #	IN.unique.flip.accnos
 
 execute_mothur_cmd(
@@ -513,12 +532,18 @@ execute_mothur_cmd(
 	"fasta=$in.unique.align, 
 	optimize=start-end, 
 	criteria=95,
-	name=$in.names,
-	group=$group.groups,
-	alignreport=$in.unique.align.report,
+	count=$in.count_table,
+	alignreport=$in.unique.align_report,
 	minscore=30,
 	processors=$num_proc"
 );
+
+
+#        name=$in.names,
+#        group=$group.groups,
+
+#        alignreport=$in.unique.align.report,
+
 # Takes
 # 	GROUP.groups
 # Makes
@@ -542,8 +567,12 @@ execute_mothur_cmd(
 execute_mothur_cmd(
 	"unique.seqs",
 	"fasta=$in.unique.good.filter.fasta,
-	name=$in.good.names"
+	count=$in.good.count_table"
 );
+
+#	name=$in.good.names"
+
+
 # Makes
 #	IN.unique.good.filter.unique.fasta
 #	IN.unique.good.filter.names
@@ -553,11 +582,17 @@ log_counts_names("$in.unique.good.filter.names", "After_2nd_Unique");
 execute_mothur_cmd(
 	"pre.cluster",
 	"fasta=$in.unique.good.filter.unique.fasta,
-	name=$in.unique.good.filter.names,
-	group=$in.good.groups,
 	diffs=$preclust_diff,
+	count=$in.unique.good.filter.count_table,
 	processors=$num_proc"
 );
+
+
+
+#	name=$in.unique.good.filter.names,
+#	group=$in.good.groups,
+
+
 # Makes
 # 	IN.unique.good.filter.count_table
 # 	IN.unique.good.filter.unique.precluster.<group id1>.map
@@ -989,22 +1024,25 @@ if(!($skipOTUsteps)){
 		"cluster",
 		"column=$in.unique.good.filter.unique.precluster.pick.dist, 
 		count=$in.unique.good.filter.unique.precluster.pick.count_table,
-		precision=100
-		"
+		precision=100,
+		cutoff=$clust_cutoff"
 	);
 	# Makes
-	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.steps
-	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.list
-	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sensspec
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.steps
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.list
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.sensspec
 	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.sabund
 	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.rabund
 
 	execute_mothur_cmd(
 		"make.shared",
-		"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list, 
+		"list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.list, 
 		count=$in.unique.good.filter.unique.precluster.pick.count_table,
 		label=$clust_cutoff"
 	);
+
+#	list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
+
 	# Makes
 	#	IN.unique.good.filter.unique.precluster.pick.mothurGroup.count_table
 	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.shared
@@ -1012,13 +1050,16 @@ if(!($skipOTUsteps)){
 	execute_mothur_cmd(
 		"classify.otu",
 		"taxonomy=$in.unique.good.filter.unique.precluster.pick.$reference_name.wang.taxonomy,
-		list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
+		list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.list,
 		count=$in.unique.good.filter.unique.precluster.pick.count_table,
 		label=$clust_cutoff"
 	);
+
+#                list=$in.unique.good.filter.unique.precluster.pick.opti_mcc.list,
+
 	# Makes
-	# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
-	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.tax.summary
+	# 	IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.$clust_cutoff.cons.taxonomy
+	#	IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.$clust_cutoff.cons.tax.summary
 	
 
 	
@@ -1039,7 +1080,7 @@ if(!($skipOTUsteps)){
 
 	my $exec_string="
 		$OTU_TO_ST_BIN
-			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.shared
+			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.shared
 			-o $st_dir/$out_root.otu
 	";
 	exec_cmd($exec_string, "$st_dir", "shared_to_summary_table");
@@ -1049,7 +1090,7 @@ if(!($skipOTUsteps)){
 	$exec_string="
 		$ANNOTATE_OTU_WITH_GENUS_BIN
 			-s $st_dir/$out_root.otu.97.summary_table.tsv
-			-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.cons.taxonomy
+			-m $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.$clust_cutoff.cons.taxonomy
 			-o $st_dir/$out_root.otu.97.genus.summary_table.tsv
 	";
 	exec_cmd($exec_string, "$st_dir", "annotate_otu_with_genera");
@@ -1062,11 +1103,11 @@ if(!($skipOTUsteps)){
 	 
 
 	# Compute OTU to taxa degrees
-	# 	Will need IN.unique.good.filter.unique.precluster.pick.opti_mcc.0.03.cons.taxonomy
+	# 	Will need IN.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.cons.taxonomy
 
 	my $exec_string="
 		$OTU_TAXA_DEGREE_BIN
-			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.cons.taxonomy
+			-i $in.unique.good.filter.unique.precluster.pick.opti_mcc.$clust_cutoff.$clust_cutoff.cons.taxonomy
 			-o $st_dir/$clust_cutoff.cons.taxonomy
 	";
 	exec_cmd($exec_string, "$st_dir", "otu_taxa_degree");
