@@ -832,7 +832,6 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	message("----------------------------------------------------------");
 	message();
 
-
 	if(!specified(pairs_mat)){
 		message("Reconcile Summary Table/Factors by shared sample IDs.");
 		reconned=recon_factor_to_sumtab(
@@ -857,8 +856,6 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 	results[["pairs_mat"]]=pairs_mat;
 	results[["factor_sbj_cname"]]=param[["factor_sbj_cname"]]; 
 	results[["factor_smp_cname"]]=param[["factor_smp_cname"]];
-
-	# print_se(results);
 
 	return(results);
 }
@@ -918,6 +915,7 @@ load_and_reconcile_files=function(
 				message("Sample ID not specified, presuming 1st col is sample id.");
 				presumed_sample_id=colnames(factors_mat)[1];
 				factors[["smp_cname"]]=presumed_sample_id;
+				factors[["smp_cname_presumed"]]=T;
 				rownames(factors_mat)=factors_mat[,presumed_sample_id];
 				message("Presumed Sample ID: ", presumed_sample_id, "\n");
 			}else{
@@ -1033,13 +1031,19 @@ load_and_reconcile_files=function(
 	message("***************************************************************\n");
 	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
+		if(!is.null(factors[["smp_cname_presumed"]])){
+			smp_cname=NULL;
+		}else{
+			smp_cname=factors[["smp_cname"]];
+		}
+
 		reconciled_files=reconcile(param=list(
 			summary_table_mat=summary_table_mat, 
 			factor_mat=factors_subset_mat, 
 			pairs_mat=pairs_mat, 
 			sbj_smp_mat=sbj_smp_mat,
 			factor_sbj_cname=factors[["sbj_cname"]],
-			factor_smp_cname=factors[["smp_cname"]]
+			factor_smp_cname=smp_cname
 			), "3/6 Performing Pre-NA Removal Reconcile");
 
 		recon_factors=reconciled_files[["factor_mat"]];
