@@ -382,7 +382,7 @@ pdf(paste(OutputFnameRoot, ".pca.pdf", sep=""), height=11, width=8.5);
 
 ##############################################################################
 
-load_community_fba=function(fname){
+load_community_fba=function(fname, host="Vm"){
 
 	raw_mat=as.data.frame(read.delim(fname,  header=TRUE, check.names=FALSE, sep="\t"));
 
@@ -413,37 +413,321 @@ load_community_fba=function(fname){
 	print(tail(unique_taxa_ids));
 	cat("\n");
 
+	# Remove host/environment
+	cat("Removing host/environment (", host, ") rows...\n");
+	host_ix=raw_mat[,"TaxaID"]==host;	
+	no_host_mat=raw_mat[!host_ix,];
+
 	cat("------------------------------------------------------------------\n");
 	cat("Num Samples: ", num_unique_sample_ids, "\n");
 	cat("Num Taxa: ", num_unique_taxa_ids, "\n");
 	cat("Num Reactions: ", ncol(raw_mat)-2, "\n");
+	cat("\n");
+	cat("Returned dimensions:", paste(dim(no_host_mat), collapse=" x "), "\n");
 	cat("------------------------------------------------------------------\n");
 
-	return(raw_mat);
+	return(no_host_mat);
 }
 
 
-filter_low_flux_categories=function(raw_fb_mat){
+filter_low_flux_categories=function(raw_fb_mat, zero_cutoff=1e-6){
 
-	# Remove flux columns that have 
-	abs_flux_matrix=abs(flux_matrix);
-	min_flux_arr=apply(abs_flux_matrix, 2, max);
-	#print(min_flux_arr);
-	keep_flux=(min_flux_arr>ZeroCutoff);
-	num_kept=sum(keep_flux);
-	num_original=length(min_flux_arr);
+	# The raw_fb_mat still has the first 2 columns as sample_id and taxa 
 
-	hist(log10(as.matrix(abs_flux_matrix)));
-	cat("Number of Reactions greater than threshold: ", num_kept, " of ", num_original, "\n");
-	#print(flux_matrix);
+	cat("Screening flux categories at cutoff: ", zero_cutoff, "\n");
+
+	# Extract flux values
+	ncol_raw_mat=ncol(raw_fb_mat);
+	flux_val_mat=raw_fb_mat[,3:ncol_raw_mat];
+
+	nrow_flux_val=nrow(flux_val_mat);
+	cat("Number of Raw Flux Categories:", nrow_flux_val, "\n");
+
+	# Compute magnitude (absolute value) of abundances and keep reactions > cutoff
+	mag_flux_mat=abs(flux_val_mat);
+	max_flux_arr=apply(mag_flux_mat, 2, max);
+	keep_flux_ix=(max_flux_arr>ZeroCutoff);
+	num_kept=sum(keep_flux_ix);
+
+	cat("Num Screened Categories: ", num_kept, "\n");
+
+	# Keep essentially non-zero fluxes
+	kept_flux_mat=flux_val_mat[,keep_flux_ix];
+
+	# Set fluxes of kept below cutoff to 0.
+	pos_mat=kept_flux_mat;
+	neg_mat=kept_flux_mat;
+	pos_mat[pos_mat<zero_cutoff]=0;
+	neg_mat[neg_mat>-zero_cutoff]=0;
+	comb_mat=pos_mat+neg_mat;
+
+	out_mat=cbind(raw_fb_mat[,c(1,2)], comb_mat);
+
+	#par(mfrow=c(1,3));
+	#brs=log10(range(mag_flux_mat));
+	#hist(log10(as.matrix(mag_flux_mat)), main="Original Unfiltered", breaks=brs);
+	#hist(log10(as.matrix(abs(kept_flux_mat))), main="Kept", breaks=brs);
+	#hist(log10(as.matrix(abs(out_mat))), main="Kept and Filtered", breaks=brs);
 	
 
-	# Eeach 
-
-	return(graph_list);
+#	return(graph_list);
+	return(out_mat);
 }
 
-raw_FBA_matrix=load_community_fba(FBA_InFile);
+threshold_flux_by_magnitude=function(raw_fb_mat, prop_to_keep=.95){
+	
+	cat("Sorting fluxes in decreasing order.\n");
+
+	ncol_raw_mat=ncol(raw_fb_mat);
+	flux_val_mat=raw_fb_mat[,3:ncol_raw_mat];
+	num_flux_categories=ncol(flux_val_mat);
+
+	# Calculate magnitues of flux
+	mag_flux_mat=abs(flux_val_mat);
+	sum_mag_flux_perrxn=apply(mag_flux_mat, 2, sum);
+	sum_mag_flux_acrrxn=sum(sum_mag_flux_perrxn);
+
+	# Order the reactions by decreasing flux magnitudes
+	mag_flux_dec_ord_ix=order(sum_mag_flux_perrxn, decreasing=T);
+	mag_flux_dec_ord=sum_mag_flux_perrxn[mag_flux_dec_ord_ix];
+	
+	# Normalize by total flux across all reactions
+	normalized_flux=mag_flux_dec_ord/sum_mag_flux_acrrxn
+	# Calculate cumsum
+	cumsum_mag_flux=cumsum(normalized_flux);
+
+	# Create table
+	summary_mat_stat_names=c("Index", "FluxMag", "Prop", "Cumul");
+	summary_mat=matrix(0, nrow=num_flux_categories, ncol=length(summary_mat_stat_names));
+	colnames(summary_mat)=summary_mat_stat_names;
+
+	summary_mat[,"Index"]=1:num_flux_categories;
+	summary_mat[,"FluxMag"]=mag_flux_dec_ord;
+	summary_mat[,"Prop"]=normalized_flux;
+	summary_mat[,"Cumul"]=cumsum_mag_flux;
+
+	rownames(summary_mat)=names(mag_flux_dec_ord);
+	print(summary_mat);
+
+	# Extract flux from 1 to less than propt_to_keep
+	num_flux_to_keep=sum(cumsum_mag_flux<prop_to_keep)+1;
+	flux_names_to_keep=rownames(summary_mat[1:num_flux_to_keep,,drop=F]);
+
+	cat("Flux Names to Keep:\n");
+	print(flux_names_to_keep);
+	keep_matrix=cbind(raw_fb_mat[,1:2], flux_val_mat[,flux_names_to_keep,drop=F]);
+
+	if(0){
+		for(i in 1:num_flux_to_keep){
+			hist(flux_val_mat[flux_val_mat[,i]!=0,i],breaks=20);
+		}
+	}
+
+	return(keep_matrix);
+}
+
+#------------------------------------------------------------------------------
+
+nz_vec_cor=function(x, y){
+	
+	nz_x_ix = (x!=0);
+	nz_y_ix = (y!=0);
+	shared_ix = (nz_x_ix | nz_y_ix);
+
+	#num_shared=sum(shared_ix);
+	#cat(num_shared, "\n");
+
+	cor_val=cor(x[shared_ix], y[shared_ix], method="spearman");
+
+	return(cor_val);
+
+}
+
+nz_mat_cor=function(mat){
+	
+	num_var=ncol(mat);
+
+	out_mat=matrix(NA, nrow=num_var, ncol=num_var);
+	diag(out_mat)=1;
+	
+	for(i in 1:num_var){
+		for(j in 1:(i-1)){
+			nzcor=nz_vec_cor(mat[,i], mat[,j]);
+			out_mat[i,j]=nzcor;
+			out_mat[j,i]=nzcor;
+		}
+	}
+
+	#print(out_mat);
+
+	return(out_mat);
+
+}
+
+calculate_flux_correlation=function(raw_fb_mat){
+
+	ncol_raw_mat=ncol(raw_fb_mat);
+	flux_val_mat=raw_fb_mat[,3:ncol_raw_mat];
+	num_flux_categories=ncol(flux_val_mat);
+
+	cor_mat=nz_mat_cor(flux_val_mat);
+	
+}
+
+project_PSD=function(cor_mat, tol=1e-10){
+
+	make_sym=function(A){
+		return((A+t(A))/2);
+	}
+
+	# Force symmetry
+	cor_mat=make_sym(cor_mat);
+
+	# Eigen Val
+	eigen_rec=eigen(cor_mat, symmetric=T);
+	evals=eigen_rec$values;
+	evecs=eigen_rec$vectors;
+	
+	# Truncate negative and small values to zero
+	evals[evals<tol]=0;
+
+	# Reassemble as PSD matrix
+	cov_mat=evecs %*% diag(evals) %*% t(evecs);
+	
+	# Force symmetry
+	cov_mat=make_sym(cov_mat);
+
+	# Convert from cov to cor by normalizing
+	diag_scal_mat=diag(1/sqrt(diag(cov_mat)));
+	psd_cor_mat=diag_scal_mat %*% cov_mat %*% diag_scal_mat;
+
+	return(psd_cor_mat);
+
+}
+
+#------------------------------------------------------------------------------
+
+run_pca=function(cormat, val, prop_to_keep=0.95){
+
+	# Run PCA, find top PCs
+	eigen_rec=eigen(cormat, symmetric=T);
+
+	# Normalize PC variance and find top to keep
+	pca_propvar=eigen_rec$values/sum(eigen_rec$values);
+	pca_propcumsum=cumsum(pca_propvar);
+	keep_ix=pca_propcumsum>prop_to_keep;
+	num_pc_at_cutoff=sum(keep_ix);
+
+	# The score are the new sample coordinates: V(n x p) %*% E(p x p) = S (n x p)
+	scores=(scale(val[3:ncol(val)], center=T, scale=T) %*% eigen_rec$vectors);
+
+	cat("\n");
+	cat("Cumulative Variance:\n");
+	print(pca_propcumsum);
+	cat("\n");
+
+	num_kept=sum(pca_propcumsum<=prop_to_keep)+1;
+	acquired_variance=pca_propcumsum[num_kept];
+	
+	cat("Num PCs to targeted variance (", prop_to_keep, "):", num_kept, "\n");
+	cat("Acquired variance = ", acquired_variance, "\n");
+
+	par(mar=c(4,4,4,5));
+
+	barplot(pca_propcumsum[1:num_kept], xlim=c(0,num_kept+1), ylim=c(0,1), 
+		names.arg=1:num_kept,
+		main="Cumulative Variance Captured by PCs");
+
+
+	results=list();
+	results[["NumPCsKept"]]=num_kept;
+	results[["PropKeptVar"]]=acquired_variance;
+	results[["PCPropVar"]]=pca_propvar[1:num_kept];
+	results[["Scores"]]=scores[,1:num_kept];
+
+	return(results);
+
+}
+
+#------------------------------------------------------------------------------
+
+select_pca_reps=function(pca_res, raw_fb_mat, max_top=15, report_fn=NULL){
+	
+	num_pcs=pca_res[["NumPCsKept"]];
+
+	vals=raw_fb_mat[3:ncol(raw_fb_mat)];
+
+
+	num_fluxes=ncol(vals);
+	max_top=min(max_top, num_fluxes);
+
+	cat("Num Fluxes: ", num_fluxes, "\n");
+	cat("Num Kept PCs: ", num_pcs, "\n");
+	select_list=list();
+	selected=c();
+
+	for(i in 1:num_pcs){
+
+		pc_score=pca_res[["Scores"]][,i];
+		cor_vect=apply(vals, 2, function(x){ cor(pc_score, x, method="spearman")});
+
+		abs_sort_ix=order(abs(cor_vect), decreasing=T);
+		sorted_cor=cor_vect[abs_sort_ix];		
+
+		#print(head(sorted_cor));
+		select_list[[i]]=sorted_cor[1:max_top];
+		selected=c(selected, names(sorted_cor[1]));
+
+	}
+	selected=unique(selected);	
+
+
+	prop_var=pca_res[["PCPropVar"]];
+
+	if(!is.null(report_fn)){
+
+		cat("Generating report...\n");
+	
+		report_matrix=matrix("", nrow=2+max_top, ncol=3*num_pcs)
+		for(i in 1:num_pcs){
+
+			report_matrix[,((i-1)*3)+1]=
+				c(paste("PC", i, sep=""), "", names(select_list[[i]]));
+			report_matrix[,((i-1)*3)+2]=
+				c(sprintf("%6.4f", prop_var[i]), "", sprintf("%5.3f",select_list[[i]]));
+
+		
+			write.table(report_matrix, file=report_fn, quote=F, sep="\t", row.names=F, col.names=F);
+		}
+		print(report_matrix);
+	}
+
+	cat("Selected:\n");
+	print(selected);
+	return(selected);
+
+}
+
+###############################################################################
+
+raw_FBA_matrix=load_community_fba(FBA_InFile, host="Vm");
+
+nz_FBA_matrix=filter_low_flux_categories(raw_FBA_matrix, zero_cutoff=ZeroCutoff);
+
+thresholded_flux_mat=threshold_flux_by_magnitude(nz_FBA_matrix, prop_to_keep=0.95);
+
+flux_cor_mat=calculate_flux_correlation(thresholded_flux_mat);
+
+#print(flux_cor_mat);
+#pca_rec=run_pca(flux_cor_mat, thresholded_flux_mat, prop_to_keep=0.95);
+
+# Run PCA
+flux_cor_mat=project_PSD(flux_cor_mat);
+pca_rec=run_pca(flux_cor_mat, thresholded_flux_mat, prop_to_keep=0.95);
+
+select_pca_reps(pca_rec, thresholded_flux_mat, report_fn="selected.tsv");
+
+
 
 
 
