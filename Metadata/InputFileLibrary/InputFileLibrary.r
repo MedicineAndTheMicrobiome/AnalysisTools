@@ -735,11 +735,10 @@ match_to_index=function(values_arr, targets_arr){
 recon_factor_to_sumtab=function(fact_mat, st_mat, fact_samp_id_cname, mesg){
 
 	# Reconcile by Sample IDs
-
 	st_samp_ids=rownames(st_mat);
 	fact_samp_ids=as.character(fact_mat[, fact_samp_id_cname]);
 	shared_samp_ids=intersect(st_samp_ids, fact_samp_ids);
-	
+
 	match_ix=match_to_index(fact_samp_ids, shared_samp_ids);	
 
 	out_factor_mat=fact_mat[match_ix,,drop=F];
@@ -834,6 +833,12 @@ reconcile=function(param=list("summary_table_mat"=NULL, "factor_mat"=NULL, "pair
 
 	if(!specified(pairs_mat)){
 		message("Reconcile Summary Table/Factors by shared sample IDs.");
+
+		if(!specified(factor_samp_id_cname)){
+			message("Factor Sample ID Column Name was not specified.");
+		}else{
+			message("Factor Sample ID Column Name: ", factor_samp_id_cname);
+		}
 		reconned=recon_factor_to_sumtab(
 			factor_mat, summary_table_mat, factor_samp_id_cname, mesg);
 
@@ -1031,10 +1036,9 @@ load_and_reconcile_files=function(
 	message("***************************************************************\n");
 	report_list[["Pre-NA Removal Reconcile"]]=capture.output({
 
-		if(!is.null(factors[["smp_cname_presumed"]])){
-			smp_cname=NULL;
-		}else{
-			smp_cname=factors[["smp_cname"]];
+		smp_cname=factors[["smp_cname"]];
+		if(!specified(factors[["smp_cname_presumed"]])){
+			message("FYI: Sample ID Column Name was presumed.\n");
 		}
 
 		reconciled_files=reconcile(param=list(

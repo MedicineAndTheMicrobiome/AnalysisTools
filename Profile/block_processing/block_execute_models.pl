@@ -24,7 +24,7 @@ my $usage = "
 
 	Factor File:
 	-f <factor file>
-	-F <column name of sample ids>
+	[-F <column name of sample ids>]
 
 	[-c <covariates list file>]
 	[-g <\"grouped\" variables list file>]
@@ -73,7 +73,6 @@ my $usage = "
 if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
-	!defined($opt_F) ||
 	!defined($opt_o)
 ){
 	die $usage;
@@ -82,7 +81,6 @@ if(
 
 my $SummaryTable=$opt_s;
 my $FactorFile=$opt_f;
-my $SampID_Colname=$opt_F;
 my $Covariates=$opt_c;
 my $OutputDir=$opt_o;
 
@@ -93,6 +91,7 @@ my $DontAbort;
 my $AdditionalALRFile;
 my $ReferenceRelevelingFile;
 my $TagName="";
+my $SampID_Colname="";
 
 if(defined($opt_g)){
 	$GroupVar=$opt_g;
@@ -118,6 +117,10 @@ if(defined($opt_r)){
 	$ReferenceRelevelingFile=$opt_r;
 }else{
 	$ReferenceRelevelingFile="";
+}
+
+if(defined($opt_F)){
+	$SampID_Colname=$opt_F;
 }
 
 $AnalysisName=~s/\.txt$//;
