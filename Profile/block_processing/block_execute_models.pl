@@ -5,13 +5,13 @@
 use strict;
 use Getopt::Std;
 use File::Temp;
-use vars qw ($opt_s $opt_f $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E $opt_r $opt_t);
+use vars qw ($opt_s $opt_f $opt_F $opt_c $opt_g $opt_p $opt_a $opt_o $opt_E $opt_r $opt_t);
 use File::Basename;
 use Cwd;
 use Digest::MD5;
 use Sys::Hostname;
 
-getopts("s:f:c:g:p:a:o:Er:t:");
+getopts("s:f:F:c:g:p:a:o:Er:t:");
 
 my $NUM_ALR_VARIABLES=35;
 
@@ -19,8 +19,13 @@ my $usage = "
 	usage:
 	$0
 
+	Summary Table:
 	-s <summary table file>
+
+	Factor File:
 	-f <factor file>
+	-F <column name of sample ids>
+
 	[-c <covariates list file>]
 	[-g <\"grouped\" variables list file>]
 
@@ -68,6 +73,7 @@ my $usage = "
 if(
 	!defined($opt_s) || 
 	!defined($opt_f) || 
+	!defined($opt_F) ||
 	!defined($opt_o)
 ){
 	die $usage;
@@ -76,6 +82,7 @@ if(
 
 my $SummaryTable=$opt_s;
 my $FactorFile=$opt_f;
+my $SampID_Colname=$opt_F;
 my $Covariates=$opt_c;
 my $OutputDir=$opt_o;
 
@@ -142,6 +149,7 @@ my $CLST_MLL="cluster_mll";
 print STDERR "\n";
 print STDERR "Summary Table:           $SummaryTable\n";
 print STDERR "Factor File:             $FactorFile\n";
+print STDERR "  SampleID Col Name:     $SampID_Colname\n";
 print STDERR "Covariates List:         $Covariates\n";
 print STDERR "Group Variables List:    $GroupVar\n";
 print STDERR "Output Directory:        $OutputDir\n";
@@ -247,6 +255,7 @@ sub run_abundance_based{
 	my $output_dir=shift;
 	my $summary_table=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -356,6 +365,7 @@ sub run_distribution_based{
 	my $output_dir=shift;
 	my $summary_table=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -404,6 +414,7 @@ sub run_distribution_based{
 		"~/git/AnalysisTools/Profile/distribution_based/Fit_Diversity_as_Predictor/Fit_Diversity_as_Predictor.r \
 			-s $summary_table \
 			-f $factor_file \
+			-F $samp_id_colname \
 			-y $variable_list \
 			-c $covariates \
 			-q $output_dir/cov_var \
@@ -477,6 +488,7 @@ sub run_distance_based{
 	my $output_dir=shift;
 	my $summary_table=shift;
 	my $factor_file=shift;
+	my $samp_id_colname=shift;
 	my $covariates=shift;
 	my $variable_list=shift;
 	my $model_name=shift;
@@ -680,6 +692,7 @@ run_abundance_based(
 	$OutputDir,
 	$SummaryTable,
 	$FactorFile,
+	$SampID_Colname,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
@@ -692,6 +705,7 @@ run_distribution_based(
 	$OutputDir,
 	$SummaryTable,
 	$FactorFile,
+	$SampID_Colname,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
@@ -702,6 +716,7 @@ run_distance_based(
 	$OutputDir,
 	$SummaryTable,
 	$FactorFile,
+	$SampID_Colname,
 	$Covariates,
 	$GroupVar,
 	$AnalysisName,
