@@ -456,6 +456,90 @@ output_sample_copy_count_summary(sample_info_list, output_summary_fn, sample_dep
 
 ##############################################################################
 
+output_sample_stat_bysampleid=function(samp_info_rec, outfn, split_char=";"){
+
+	cat("Writing: ", outfn, "\n");
+
+	ref_nm=names(samp_info_rec);
+	num_ref=length(ref_nm);
+	shortened_names=sapply(strsplit(ref_nm, ";"), function(y) tail(y,1));
+
+	cat("Full Reference Names:\n");
+	print(ref_nm);
+	cat("Shortened Reference Names:\n");
+	print(shortened_names);
+
+	# Create column names
+	hdr=c();
+	for(sn in shortened_names){
+		hdr=c(hdr, 
+			paste("ref_abd_", sn, sep=""),
+			paste("cc_all_", sn, sep=""),
+			paste("cc_abv_", sn, sep=""),
+			paste("log10_cc_all_", sn, sep=""),
+			paste("log10_cc_abv_", sn, sep=""));
+	}
+	num_fields=length(hdr);
+
+	cat("Copy Count Records:\n");
+	print(names(samp_info_rec[["_combined_"]]));
+
+	samp_ids=names(samp_info_rec[["_combined_"]][["TotalCopyCounts"]]);
+	num_samples=length(samp_ids);
+	
+	cat("Num Samples: ", num_samples, "\n");
+
+	# Loop through each reference
+	outmat=c();
+	for(i in 1:num_ref){
+
+		rf=ref_nm[i];
+
+		ref_abd=samp_info_rec[[rf]][["RefAbnd"]];
+		tcc=samp_info_rec[[rf]][["TotalCopyCounts"]];
+		abv_ix=samp_info_rec[[rf]][["RefAbdAboveCutoff"]];
+
+		tcc[is.nan(tcc)]=NA;
+
+		cc_all=tcc;
+		cc_abv=tcc;
+		cc_abv[!abv_ix]=NA;
+		log_cc_all=log10(tcc);
+		log_cc_abv=log10(cc_abv);
+
+		samp_id=names(ref_abd);
+
+		tmp_mat=cbind(
+			ref_abd[samp_ids],
+			cc_all[samp_ids],
+			cc_abv[samp_ids],
+			log_cc_all[samp_ids],
+			log_cc_abv[samp_ids]
+			);	
+
+		outmat=cbind(outmat, tmp_mat);
+	}
+
+	# Convert numbers to text and export
+	colnames(outmat)=hdr;
+	rownames(outmat)=samp_ids;
+	#print(outmat);
+	txt_mat=apply(outmat, 1:2, as.character);
+	txt_mat=cbind(samp_ids, txt_mat);
+	colnames(txt_mat)=c("sample_id", hdr);
+	#print(txt_mat);
+
+	# Write matrix to file
+	write.table(txt_mat, file=outfn, quote=F, sep="\t", row.names=F);
+
+}
+
+output_sample_stat_fn=paste(OutputRoot, ".copy_count.bysampleid.tsv", sep="");
+output_sample_stat_bysampleid(sample_info_list, output_sample_stat_fn);
+
+
+##############################################################################
+
 # Generate estimated total plots across samples
 
 generate_sample_prof_line_plot=function(samp_info_rec){
