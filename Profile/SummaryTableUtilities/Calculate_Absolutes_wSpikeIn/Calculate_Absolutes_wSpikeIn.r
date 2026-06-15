@@ -109,7 +109,7 @@ cat("Output Root: ", OutputRoot, "\n");
 cat("Proportions File: ", ProportionsFile, "\n");
 cat("\n");
 
-pdf(paste(OutputRoot, ".abs_spikein.pdf", sep=""), height=8.5, width=11);
+pdf(paste(OutputRoot, ".abs_cp_cnt_anlys.pdf", sep=""), height=8.5, width=11);
 
 ###############################################################################
 
@@ -392,7 +392,7 @@ for(cur_ref_nm in c(reference_names, "_combined_")){
 	
 	#----------------------------------------------------------------------
 	# Write reference-specific summary table 
-	out_sumtab_fn=paste(OutputRoot, ".", ref_itn, ".summary_table.tsv", sep="");
+	out_sumtab_fn=paste(OutputRoot, ".abs_cp_cnt_anlys.", ref_itn, ".summary_table.tsv", sep="");
 	write_summary_file(abs_wo_refer, out_sumtab_fn);
 
 	# Accumulate stats for downstream across references analyses 
@@ -451,7 +451,7 @@ output_sample_copy_count_summary=function(samp_info_rec, outfn, smp_dep){
 	write.table(out_mat, outfn, append=T, quote=F, sep="\t", row.names=F, col.names=T);
 }
 
-output_summary_fn=paste(OutputRoot, ".copy_count_stats.tsv", sep="");
+output_summary_fn=paste(OutputRoot, ".abs_cp_cnt_anlys.stats.tsv", sep="");
 output_sample_copy_count_summary(sample_info_list, output_summary_fn, sample_depths);
 
 ##############################################################################
@@ -473,11 +473,11 @@ output_sample_stat_bysampleid=function(samp_info_rec, outfn, split_char=";"){
 	hdr=c();
 	for(sn in shortened_names){
 		hdr=c(hdr, 
-			paste("ref_abd_", sn, sep=""),
-			paste("cc_all_", sn, sep=""),
-			paste("cc_abv_", sn, sep=""),
-			paste("log10_cc_all_", sn, sep=""),
-			paste("log10_cc_abv_", sn, sep=""));
+			paste("acca.", sn, ".ref_abd", sep=""),
+			paste("acca.", sn, ".cc_all", sep=""),
+			paste("acca.", sn, ".cc_abv", sep=""),
+			paste("acca.", sn, ".log10_cc_all", sep=""),
+			paste("acca.", sn, ".log10_cc_abv", sep=""));
 	}
 	num_fields=length(hdr);
 
@@ -510,11 +510,11 @@ output_sample_stat_bysampleid=function(samp_info_rec, outfn, split_char=";"){
 		samp_id=names(ref_abd);
 
 		tmp_mat=cbind(
-			ref_abd[samp_ids],
+			signif(ref_abd[samp_ids], 5),
 			cc_all[samp_ids],
 			cc_abv[samp_ids],
-			log_cc_all[samp_ids],
-			log_cc_abv[samp_ids]
+			signif(log_cc_all[samp_ids], 5),
+			signif(log_cc_abv[samp_ids], 5)
 			);	
 
 		outmat=cbind(outmat, tmp_mat);
@@ -534,7 +534,7 @@ output_sample_stat_bysampleid=function(samp_info_rec, outfn, split_char=";"){
 
 }
 
-output_sample_stat_fn=paste(OutputRoot, ".copy_count.bysampleid.tsv", sep="");
+output_sample_stat_fn=paste(OutputRoot, ".abs_cp_cnt_anlys.bysampleid.tsv", sep="");
 output_sample_stat_bysampleid(sample_info_list, output_sample_stat_fn);
 
 
