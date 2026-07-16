@@ -443,6 +443,26 @@ export_proxies=function(targets_arr, values_mat, outfn){
 
 }
 
+#------------------------------------------------------------------------------
+
+plot_selected=function(targets_arr, values_mat){
+
+	cat("Num Proxies: ", length(targets_arr), "\n");
+	uniq_targ=unique(targets_arr);
+	num_uniq_targ=length(uniq_targ);
+	cat("Num Unique Proxies: ", num_uniq_targ, "\n");
+
+	cat("Selected Proxies: \n");
+	print(uniq_targ);
+
+	par(mfrow=c(4,3));
+	for(nm in uniq_targ){
+		hist(values_mat[,nm], main=nm, xlab="Values");
+	}
+
+
+}
+
 
 #------------------------------------------------------------------------------
 
@@ -519,6 +539,10 @@ plot_text(c(
 	capture.output(print(proxylist, quote=F))
 ));
 #---------------------------------------------
+
+plot_selected(
+	targets_arr=selected_proxies[["unique_proxies"]], 
+	values_mat=trans_top_flux_mat);
 
 export_proxies(
 	targets_arr=selected_proxies[["unique_proxies"]], 
