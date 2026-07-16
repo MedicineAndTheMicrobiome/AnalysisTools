@@ -424,7 +424,7 @@ barplot_top_proxies=function(sel_prox){
 
 #------------------------------------------------------------------------------
 
-export_proxies=function(targets_arr, values_mat){
+export_proxies=function(targets_arr, values_mat, outfn){
 
 	cat("Num Proxies: ", length(targets_arr), "\n");
 	uniq_targ=unique(targets_arr);
@@ -436,10 +436,13 @@ export_proxies=function(targets_arr, values_mat){
 
 	selected_mat=values_mat[,uniq_targ,drop=F];
 
-	print(selected_mat);
-
+	outmat=cbind(rownames(selected_mat), selected_mat);
+	cn=c("SampleID", colnames(selected_mat));
+	colnames(outmat)=cn;
+	write.table(outmat, file=outfn, quote=F, sep="\t", row.names=F);
 
 }
+
 
 #------------------------------------------------------------------------------
 
@@ -517,7 +520,11 @@ plot_text(c(
 ));
 #---------------------------------------------
 
-export_proxies(selected_proxies[["unique_proxies"]], trans_top_flux_mat);
+export_proxies(
+	targets_arr=selected_proxies[["unique_proxies"]], 
+	values_mat=trans_top_flux_mat,
+	outfn=paste(OutputFnameRoot, ".trans.proxies.tsv", sep=""));
+
 
 ##############################################################################
 
