@@ -32,7 +32,7 @@ usage = paste(
 	"	-c <Covariates List>\n",
 	"	-t <Test Predictor Groups Map>\n",
 	"	-o <Output Filename Root>\n",
-	"	[-R (Skip full-target (Targeted Reduced) model)\n", 
+	"	[-R (Skip Full-Target models)]\n", 
 	"\n",
 	"This script will fit the following multinomial logistic regression model:\n",
 	"\n",
@@ -100,7 +100,7 @@ options(width=80);
 
 load_factors=function(fname){
 	cat("Loading Factors/Metadata: ", fname, "\n", sep="");
-	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=1, check.names=FALSE));
+	factors=data.frame(read.table(fname,  sep="\t", header=TRUE, row.names=NULL, check.names=FALSE));
 	return(factors);
 }
 
@@ -398,6 +398,7 @@ all_predictors=c(covariates_arr, all_test_variables);
 if(generate_lasso_on_full){
 	# Precompute the Z
 	cat("Precomputing Z Matrix (Nodewise Lasso Matrix)...\n");
+
 	lpr_init_res=lasso.proj(
 		y=rnorm(nrow(factors_used)),
 		x=factors_used[,all_predictors],
@@ -1279,6 +1280,14 @@ compare_coefficients_plot=function(coef_glm, pval_glm, coef_lasso, pval_lasso,
 	# Identify coefficients that have exploded
 	not_too_big=(abs(glm_coef_vec)<max_coef) & (abs(lasso_coef_vec)<max_coef) &
 			!is.na(glm_coef_vec) & !is.na(lasso_coef_vec);
+
+	if(all(!not_too_big)){
+		plot_text(c(
+			"All coefficients have exploded. Skipping coefficient comparison."
+		));
+		cat("All coefficients exploded. Skipping.\n"); 
+		return();
+	}
 
 	# Remove coef that have exploded
 	glm_coef_vec=glm_coef_vec[not_too_big];
