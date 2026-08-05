@@ -463,6 +463,20 @@ plot_selected=function(targets_arr, values_mat){
 
 }
 
+#------------------------------------------------------------------------------
+
+export_groups=function(targets_arr, grp_nm, outfn){
+
+	cat("Num Proxies: ", length(targets_arr), "\n");
+	uniq_targ=unique(targets_arr);
+	num_uniq_targ=length(uniq_targ);
+	cat("Num Unique Proxies: ", num_uniq_targ, "\n");
+
+	outmat=cbind(uniq_targ, rep(grp_nm, num_uniq_targ));
+
+	write.table(outmat, file=outfn, quote=F, sep="\t", col.names=F, row.names=F);
+
+}
 
 #------------------------------------------------------------------------------
 
@@ -548,6 +562,11 @@ export_proxies(
 	targets_arr=selected_proxies[["unique_proxies"]], 
 	values_mat=trans_top_flux_mat,
 	outfn=paste(OutputFnameRoot, ".trans.proxies.tsv", sep=""));
+
+export_groups(
+	targets_arr=selected_proxies[["unique_proxies"]],
+	grp_nm="fba_pca_prox",
+	outfn=paste(OutputFnameRoot, ".trans.proxies.grp", sep=""));
 
 
 ##############################################################################
