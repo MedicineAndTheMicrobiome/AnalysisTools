@@ -16,11 +16,9 @@ params=c(
 	"required_var", "q", 2, "character",
 	"blocking", "b", 2, "character",
 	"outputroot", "o", 2, "character",
-	"xrange", "x", 2, "character",
-	"yrange", "y", 2, "character",
-	"testing", "T", 2, "logical",
 	"strip_samples_nas", "s", 2, "logical",
-	"tag_name", "t", 2, "character"
+	"tag_name", "t", 2, "character",
+	"bootstrap_override", "S", 2, "numeric"
 );
 
 opt=getopt(spec=matrix(params, ncol=4, byrow=TRUE), debug=FALSE);
@@ -41,12 +39,10 @@ usage = paste(
 	"	[-q <required variables list>]\n",
 	"\n",
 	"	[-b <factor to use as blocking variable>]\n",
-	"	[--xrange=<MDS Dim1 Range, eg. -2,2>]\n",
-	"	[--yrange=<MDS Dim2 Rnage, eg. -2,2>]\n",
-	"	[-T (testing flag)]\n",
 	"	[-t <tag name>]\n",
 	"\n",
 	"	[-s (Flag to strip samples with NAs, default=F)]\n",
+	"	[-S <bootstrap override>]\n",
 	"\n",
 	"This script will run Permutational Analysis of Variance (PERMANOVA)\n",
 	"on your specified distance matrix, with the factors that are available.\n",
@@ -80,7 +76,7 @@ if(!length(opt$outputroot)){
 }else{
 	OutputFnameRoot=opt$outputroot;
 }
-OutputFnameRoot=paste(OutputFnameRoot, ".perm", sep="");
+#OutputFnameRoot=paste(OutputFnameRoot, ".perm", sep="");
 
 if(!length(opt$model_formula)){
 	ModelFormula="";
@@ -97,35 +93,10 @@ if(length(opt$model_variables_file)){
 DistmatFname=opt$distmat;
 FactorsFname=opt$factors;
 
-Xrange=numeric(2);
-if(!length(opt$xrange)){
-	Xrange=c(-Inf, Inf);
-}else{
-	Xrange=as.numeric(strsplit(opt$xrange, ",")[[1]]);
-}
-
-Yrange=numeric(2);
-if(!length(opt$yrange)){
-	Yrange=c(-Inf, Inf);
-}else{
-	Yrange=as.numeric(strsplit(opt$yrange, ",")[[1]]);
-}
-
 Blocking="";
 if(length(opt$blocking)){
 	Blocking=opt$blocking;
 	cat("Blocking variable: ", Blocking, "\n");
-}
-
-Testing=F;
-if(length(opt$testing)){
-	Testing=T;
-	cat("**************************************************************\n");
-	cat("*  Testing Flag Set...                                       *\n");
-	cat("**************************************************************\n");
-	rand=sprintf(".%04i", sample(1000,1));
-}else{
-	rand="";
 }
 
 StripSamplesWithNAs=F;
@@ -136,6 +107,11 @@ if(length(opt$strip_samples_nas)){
 RequiredFile="";
 if(length(opt$required_var)){
         RequiredFile=opt$required_var;
+}
+
+BootstrapOverride=NULL;
+if(length(opt$bootstrap_override)){
+	BootstrapOverride=opt$bootstrap_override;
 }
 
 if(length(opt$tag_name)){
@@ -165,9 +141,6 @@ cat("\n");
 cat("Distance Matrix Filename: ", DistmatFname, "\n", sep="");
 cat("Factors Filename: ", FactorsFname, "\n", sep="");
 cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
-cat("\n");
-cat("X Range for MDS plot: ", Xrange[1], ", ", Xrange[2], "\n", sep="");
-cat("Y Range for MDS plot: ", Yrange[1], ", ", Yrange[2], "\n", sep="");
 cat("\n");
 
 if(ModelFormula!=""){
@@ -242,8 +215,8 @@ orient_points_by_centroid=function(x, y, fact_col){
 		y_centroids[g]=mean(y[members]);
 	}
 
-	# Compute angle between first two factor levels
-	arc=atan2(y_centroids[2]-y_centroids[1], x_centroids[2]-x_centroids[1]);
+	# Compute angle between first and last factor levels
+	arc=atan2(y_centroids[num_groups]-y_centroids[1], x_centroids[num_groups]-x_centroids[1]);
 	
 	rot=function(x, y, arc){
 		rotated=list();
@@ -278,27 +251,35 @@ orient_points_by_centroid=function(x, y, fact_col){
 
 ##############################################################################
 
-compute_dispersion=function(variation, groups, group_names){
+compute_dispersion=function(residuals, groups, group_names){
 
-	cur_levels=sort(unique(as.character(groups)));
-	num_levels=length(cur_levels);
+	samp_ids=names(groups);
+	residuals=residuals[samp_ids];
 
-	if(num_levels == 0){
-		cur_levels=as.character(sort(unique(as.numeric(samp_levels[,1]))));
-		num_levels=length(cur_levels);
-		cat("Warning: Treating ordinal/continuous levels as categories for dispersion analysis.\n");
-	}
+	#cat("----------------------------------------------------\n");
+	#print(residuals);
+	#print(groups);
+	#print(group_names);
+	#cat("----------------------------------------------------\n");
 
+
+	num_levels=length(group_names);	
+
+	# Create matrix to store p-values
 	pval_matrix=matrix(0, nrow=num_levels, ncol=num_levels);		
-	colnames(pval_matrix)=cur_levels;
-	rownames(pval_matrix)=cur_levels;
+	colnames(pval_matrix)=group_names;
+	rownames(pval_matrix)=group_names;
 
+	# Store for export
 	points=list();	
 
+	# Compute pval for difference between residuals
 	for(li1 in 1:num_levels){
 
-		l1_variation=variation[groups==cur_levels[li1]];
-		points[[cur_levels[li1]]]=l1_variation;
+		l1_res=residuals[groups==li1];
+
+		# Store the grouping now, even we don't need it for this function.
+		points[[group_names[li1]]]=l1_res;
 
 		for(li2 in 1:num_levels){
 
@@ -309,20 +290,15 @@ compute_dispersion=function(variation, groups, group_names){
 			}else{
 
 				#cat(cur_levels[li1], " vs. ", cur_levels[li2], "\n");
-				l2_variation=variation[groups==cur_levels[li2]];
+				l2_res=residuals[groups==li2];
 
-				#print(l1_variation);
-				#print(l2_variation);
-				result=wilcox.test(l1_variation, l2_variation);
+				result=wilcox.test(l1_res, l2_res);
 				pval_matrix[li1, li2]=result$p.value;
 			
 			}
 		}
 	}
 
-	#print(pval_matrix);
-	colnames(pval_matrix)=group_names;
-	rownames(pval_matrix)=group_names;
 	names(points)=group_names;
 	
 	factor_dispersions=list();
@@ -466,7 +442,7 @@ subset_model_string=function(model_string, avail_factors){
 
 ##############################################################################
 
-pdf(paste(OutputFnameRoot, rand, ".pdf", sep=""), height=5.5, width=11);
+pdf(paste(OutputFnameRoot, ".perm.pdf", sep=""), height=5.5, width=11);
 
 plot_text(c(
 	script_name,
@@ -620,8 +596,8 @@ for(i in 1:num_factors){
 }
 
 ##############################################################################
+# Construct and Compute PERMANOVA
 
-# Perform Permanova
 dist=(as.dist(distmat));
 
 if(ModelFormula==""){
@@ -635,7 +611,6 @@ num_linear_components=length(strsplit(model_string, "\\+")[[1]]);
 cat("\nFitting this model: ", model_string, "\n");
 
 cat("\n--------------------------------------------------------------------------\n");
-cat("Before invoking Adonis:\n");
 
 if(Blocking!=""){
 	stratify=factors[[Blocking]];
@@ -651,162 +626,52 @@ cat("num_perm = ",
 	min_perms, " * max(1, 80/(", num_samples, "-", num_linear_components, "-1))\n", sep="");
 cat("Num Permutations to run: ", num_permutations_to_run, "\n");
 
-# Old version using type I sum of squares
-old_res=adonis(as.formula(model_string), data=as.data.frame(factors), strata=stratify, 
-	permutations=num_permutations_to_run);
 
-cat("Old Adonis Results:\n");
-print(names(old_res));
-print(old_res);
+if(!is.null(BootstrapOverride)){
+	cat("Boostrap Overrided to: ", BootstrapOverride, "\n");
+	num_permutations_to_run=BootstrapOverride;
+}
 
+#------------------------------------------------------------------------------
 
-res2=adonis2(as.formula(model_string), data=as.data.frame(factors), strata=stratify, 
+cat("-----------------------------------------------------------------\n");
+cat("Running adonis2()...\n");
+cat("-----------------------------------------------------------------\n");
+adonis2_res=adonis2(as.formula(model_string), data=as.data.frame(factors), strata=stratify, 
 	permutations=num_permutations_to_run, by="margin");
+print(names(adonis2_res));
+cat("Completed...\n");
 
-cat("New Adonis Results:\n");
-print(names(res2));
-print((res2));
+#------------------------------------------------------------------------------
 
+cat("-----------------------------------------------------------------\n");
+cat("Running db-RDA...\n");
+cat("-----------------------------------------------------------------\n");
+dbrda_res=dbrda(as.formula(model_string), data=as.data.frame(factors), strata=stratify,
+	permutations=num_permutations_to_run, by="margin");
+print(names(dbrda_res));
+cat("db-RDA completed.\n");
 
-# Merge new AOV table into old result to maintain other statistics we need
-merge_new_with_old_adonis=function(old, new){
+# These are the Residual Dissimilarities in the Original Distance Scale
+estimate_residuals=function(dbrda_res_in){
 
-	numrows_old=nrow(old[["aov.tab"]]);
-	numrows_new=nrow(new);
+	resid=residuals(dbrda_res_in, "response");
+	resid_mat=as.matrix(resid);
 
-	cat("Number of Rows in old: ", numrows_old, " vs. new: ", numrows_new, "\n");
+	persamp_rms_resid_dist=apply(resid_mat, 1, function(x){
+			ss=sum(x^2);
+			rmss=sqrt(ss/(length(x)-1));
+			return(rmss);
+		});
 
-	old_row_names=rownames(old[["aov.tab"]]);
-	new_row_names=rownames(new);
-	new_row_names[(new_row_names=="Residual")]="Residuals";
-	rownames(new)=new_row_names;
-
-	print(old_row_names);
-	print(new_row_names);	
-
-	out_res=old_res;
-
-	if(numrows_old==numrows_new && all(old_row_names==new_row_names)){
-		cat("Moving AOV table from adonis2 into old adonis result.\n");
-
-		aov.tab=old[["aov.tab"]];
-		aov.tab[old_row_names, "Df"]=new[old_row_names, "Df"];
-		aov.tab[old_row_names, "SumsOfSqs"]=new[old_row_names, "SumOfSqs"];
-		aov.tab[old_row_names, "MeanSqs"]=new[old_row_names, "SumOfSqs"]/new[old_row_names, "Df"];
-		aov.tab[old_row_names, "F.Model"]=new[old_row_names, "F"];
-		aov.tab[old_row_names, "R2"]=new[old_row_names, "R2"];
-		aov.tab[old_row_names, "Pr(>F)"]=new[old_row_names, "Pr(>F)"];
-		attr(aov.tab, "heading")="";
-		out_res[["aov.tab"]]=aov.tab;
-		
-		#print(out_res[["call"]]);
-		out_res[["call"]]="Original Adonis results with Adonis2 margin (type II) Sum of Squares AOV";
-		return(out_res);		
-	}else{
-		cat("Number of rows do not match between old and new Adonis results.\n");
-		cat("Going forward with old Adonis results only...\n");
-		return(NULL);
-	}
-
+	persamp_rms_resid_dist=sort(persamp_rms_resid_dist, decreasing=T);
+	return(persamp_rms_resid_dist);
 }
 
-res=merge_new_with_old_adonis(old_res, res2);
-
-if(is.null(res)){
-
-	adonis_out=capture.output(print(old_res));
-	adonis2_out=capture.output(print(res2));
-
-	plot_text(c(
-		"WARNING: The adonis2 output could not be merged into prior format.",
-		"The handling of degenerate variables could explain the discrepancy.",
-		"You may need to remove/curate the model to remove factor coefficients that could not be estimated.",
-		"",
-		"-----------------------------------------------------------------------------------------------",
-		"",
-		"Original Adonis:",
-		"",
-		adonis_out,
-		"",
-		"-----------------------------------------------------------------------------------------------",
-		"",
-		"Adonis2:",
-		"",
-		adonis2_out
-	));
-
-	res=old_res;
-}
-
-print(res);
-
-cat("--------------------------------------------------------------------------\n");
-cat("\n\n");
-
-if(0){
-	cat("\ncall:\n");
-	print(res$call);
-	cat("\ncoefficients:\n");
-	print(res$coefficients);
-	cat("\ncoef.sites:\n");
-	print(res$coef.sites);
-	#cat("\nx.perms:\n");
-	#print(res$f.perms);
-	cat("\nmodel.matrix:\n");
-	print(res$model.matrix);
-	cat("\nterms:\n");
-	print(res$terms);
-}
-
-# Not sure if these are the residuals or what the scale are.  But they may be a good proxy.
-
-cat("\nFactors:\n");
-print(factors);
-
-cat("\nModel Matrix: \n");
-cat("The factors/levels are coded into this model matrix.\n\n");
-print(res$model.matrix);
-#dim(res$model.matrix);
-
-cat("\nCoefficients: \n");
-cat("For each sample a linear model is fit for all the distances to that sample of interest.\n");
-cat("It is 'multivariate' in the number of samples (n), not the number of categories.\n");
-cat("The number of categories is lost anyway, because this is just a (n x n) distance matrix.\n\n");
-
-print(res$coef.sites);
-#dim(res$coef.sites);
-
-cat("\nUnexplained distance between samples:\n");
-cat("Multiplying the model matrix by the estimated coefficients, would equal 0 for each sample\n");
-cat("if all the components of inter sample distances for that sample of interest could be accounted for.\n");
-cat("We don't really have residuals for each sample, but these values capture their essence.\n\n");
-
-#cat("Coefficients:\n");
-#print(res$coef.sites);
-
-#cat("Model Matrix:\n");
-#print(t(res$model.matrix));
-
-cat("Removing coefficients that were not estimable...\n");
-non_na_coeff=apply(res$coef.sites, 1, function(x){all(!is.na(x))});
-
-non_na_coef.sites=res$coef.sites[non_na_coeff,,drop=F];
-
-cat("Calculating residuals...\n");
-fit=non_na_coef.sites * t(res$model.matrix);
-variation=apply(fit, 2, function(x){ abs(sum(x))});
-names(variation)=rownames(res$model.matrix);
-variation_order=order(variation, decreasing=T);
-
-print(variation[variation_order]);
-cat("\n");
+persamp_rms_resid_dist=estimate_residuals(dbrda_res);
+print(persamp_rms_resid_dist);
 
 ##############################################################################
-
-##############################################################################
-# Output summary input and results
-
-# Output factor summaries
 
 used_factors=intersect(model_var, factor_names);
 used_factors_df=as.data.frame(factors[,used_factors]);
@@ -824,9 +689,12 @@ out_text=c(
 	""
 );
 plot_text(out_text);
+cat("\n\n");
+print(out_text, quote=F);
+cat("\n\n");
 
 # Output model and ANOVA table
-anova_lines=capture.output(print(res$aov.tab));
+anova_lines=capture.output(print(adonis2_res));
 out_text=c(
 	"Model: ",
 	paste("    ", model_string),
@@ -837,11 +705,29 @@ out_text=c(
 	anova_lines
 );
 plot_text(out_text);
+cat("\n\n");
+print(out_text, quote=F);
+cat("\n\n");
+
+##############################################################################
+
+get_clean_aov_tab=function(adns_res){
+	# Just grab variables where F was calculable
+	adns_tab=as.data.frame(adns_res);
+	Fval=adns_tab[,"F"];
+	nona=!is.na(Fval);
+	clean_tab=adns_tab[nona,,drop=F];
+	return(clean_tab);
+}
+clean_permanova_tab=get_clean_aov_tab(adonis2_res);
+
+cat("Clean PERMANOVA Tab:\n");
+print(clean_permanova_tab);
 
 ##############################################################################
 # Plot SS barplots
 
-plot_sumsqr_barplot=function(adonis_res){
+plot_sumsqr_barplot=function(clean_tab){
 
 	#print(res);
 	#print(names(res));
@@ -849,91 +735,134 @@ plot_sumsqr_barplot=function(adonis_res){
 	#print(rownames(res[["aov.tab"]]));
 	#print(colnames(res[["aov.tab"]]));
 
+	cat("Plotting SumSqrs Barplot...\n");
+
+	# Extract out variables we need
+	pval=clean_tab[,"Pr(>F)"];
+	r2=clean_tab[,"R2"];
+	varnames=rownames(clean_tab);
+	names(pval)=varnames;
+	names(r2)=varnames;
+	num_var=nrow(clean_tab);
+	signf_varnames=varnames[pval<0.1];
+
+	unexplained_r2=1-sum(r2);
+
+	r2_sorted=sort(r2, decreasing=T);
+	r2_out=c(unexplained_r2, r2_sorted);
+	names(r2_out)=c("\"Unexplained\"", names(r2_sorted));
+
+	pval_out=c(0, pval[names(r2_sorted)]);
+
+	#----------------------------------------------------------------------
+	# Generate plot
+
 	orig_par=par(no.readonly=T);
 
-	ss_val=adonis_res[["aov.tab"]][,"R2"];
-	pval=adonis_res[["aov.tab"]][,"Pr(>F)"];
-	pval_lt10=(pval<=.10 & !is.na(pval));
-
-	ss_varname=rownames(adonis_res[["aov.tab"]]);
-	
-	signf_varnames=ss_varname[pval_lt10];
-	cat("Significant variable names:\n");
-	print(signf_varnames);
-
-	res_ix=which(ss_varname=="Residuals");
-	ss_varname[res_ix]="\"Unexplained\"";
-
-	ss_arr_len=length(ss_val)-1; # exclude Total
-
-	ss_val=ss_val[1:ss_arr_len];
-	ss_varname=ss_varname[1:ss_arr_len];
-	ss_val_order=order(ss_val, decreasing=T);
-	ss_val=ss_val[ss_val_order];
-	ss_varname=ss_varname[ss_val_order];
-
-
-	print(ss_val);
-	print(ss_varname);
-
 	par(mar=c(10,5,5,10));
-	barcol=rep("grey", ss_arr_len);
-	textcol=rep("grey33", ss_arr_len);
 
-	names(barcol)=ss_varname;
-	names(textcol)=ss_varname;
+	num_bars=length(r2_out);
+	barcol=rep("grey", num_bars);
+	textcol=rep("grey33", num_bars);
+	names(barcol)=names(r2_out);
+	names(textcol)=names(r2_out);
 
+	# Color the unexplained differently
 	barcol[signf_varnames]="blue";
 	barcol["\"Unexplained\""]="red";
-
 	textcol[signf_varnames]="black";
 	textcol["\"Unexplained\""]="darkred";
 
-	mids=barplot(ss_val, main="R^2 By Factor", xlab="", las=2, col=barcol,
-		ylim=c(0,1.1), ylab="Proportion of Sum of Squares (SS)");
+	# Generate bars	
+	mids=barplot(r2_out, main="R^2 By Factor", xlab="", las=2, col=barcol,
+		ylim=c(0,1.1), ylab="Proportion of Sum of Squares (SS)",
+		names.arg=""
+		);
 
-	text(mids, ss_val, sprintf("%2.3f", ss_val), pos=3, cex=.7, col=textcol);
+	# Label the R2 values
+	text(mids, r2_out, sprintf("%2.3f", r2_out), pos=3, cex=.7, col=textcol);
 
+	# Label the variable names below
         bar_width=mids[2]-mids[1];
         plot_range=par()$usr;
         label_size=min(c(1,.7*bar_width/par()$cxy[1]));
         text(
 		mids-par()$cxy[1]/2, 
-		rep(-par()$cxy[2]/2, ss_arr_len), 
-		ss_varname, srt=-45, xpd=T, pos=4, cex=label_size, col=textcol
+		rep(-par()$cxy[2]/2, length(r2_out)), 
+		names(r2_out), srt=-45, xpd=T, pos=4, cex=label_size, col=textcol
 	);
 
-	par(orig_par);
+	legend(max(mids)*3/4, 1, 
+		fill=c("blue", "grey"), 
+		legend=c("p-value < 0.1", "Not Significant"));
 
-	return;
+	par(orig_par);
 }
 
-plot_sumsqr_barplot(res);
+plot_sumsqr_barplot(clean_permanova_tab);
 
 ##############################################################################
 # Pre-Compute PCA and MDS
 
-# Compute PCA
-cor_mat=cor(distmat);
-eigen_out=eigen(cor_mat);
+# Precompute nMDS and MDS:
+# Remember, you can do PCA on distance matrices, you have do do PCoA
+# cmdscale() is classical metric MDS PCoA
+# metaMDS() is non-metric MDS
 
-PC_contributions=eigen_out$values/sum(eigen_out$values);
-pc1=eigen_out$vectors[,1];
-pc2=eigen_out$vectors[,2];
+metricMDS=cmdscale(distmat, eig=T);
+# Returns: "points" "eig"    "x"      "ac"     "GOF"
+metMDS1=metricMDS$points[,1];
+metMDS2=metricMDS$points[,2];
+names(metMDS1)=rownames(metricMDS$points);
 
-# Compute MDS
-for(i in 1:length(distmat)){
-        if(distmat[i]==0){
-                distmat[i]=1e-323;
-        }
+eig_val=metricMDS$eig;
+valid_eig_val=eig_val[eig_val>0];
+sum_eig=sum(valid_eig_val);
+eig_prop=valid_eig_val/sum_eig;
+
+num_eig_gt_1pct=eig_prop>=0.01;
+top_eig=eig_prop[num_eig_gt_1pct];
+
+out_info_text=c(
+	paste("Total Eigen Values: ", length(eig_val)),
+	paste("Total Positive Eig Val:", length(valid_eig_val)),
+	paste("Total Eig Val > 0.01: ", length(top_eig)),
+	"",
+	"(Eigen Values can become negative when distance matrices are not Euclidian.)");
+
+PC_contributions=top_eig;
+
+plot_top_dist_eign=function(topeig){
+	#print(topeig);
+	remaining=1-(sum(topeig));
+	out_bar_hts=c(remaining, topeig);
+	num_top_pcs=length(topeig);
+
+	# Color the unexplained differently
+	barcol="blue";
+
+	mids=barplot(out_bar_hts,
+		names.arg=c("Rem", 1:num_top_pcs),
+		col=c("grey", rep("blue", num_top_pcs)),
+		xlab="PCs", ylab="Proportion of Variance",
+		ylim=c(0, max(out_bar_hts)+.05),
+		main="Top metric MDS / PCoA Eigen Values of Distance Matrix");
+	text(mids, out_bar_hts, sprintf("%2.3f", out_bar_hts), pos=3, cex=.6, col="dark red")
+
+	title(main=out_info_text, line=-2, cex.main=.8, font.main=3);
+	
 }
-#mds=isoMDS(distmat);
-#mds1=mds$points[,1];
-#mds2=mds$points[,2];
 
-clmds=cmdscale(distmat);
-mds1=clmds[,1];
-mds2=clmds[,2];
+plot_top_dist_eign(top_eig);
+	
+#------------------------------------------------------------------------------
+
+nonMetricMDS=metaMDS(distmat, k=2);
+print(names(nonMetricMDS));
+nonMetMDS1=nonMetricMDS$points[,1];
+nonMetMDS2=nonMetricMDS$points[,2];
+names(nonMetMDS1)=rownames(nonMetricMDS$points);
+#plot(nonMetMDS1, nonMetMDS2, xlim=c(-3,3), ylim=c(-1,1));
 
 ##############################################################################
 # Define page layout for the analyses
@@ -969,44 +898,137 @@ num_simple_colors=length(simple_colors);
 factor_sample_names=rownames(factors);
 num_factor_sample_names=length(factor_sample_names);
 
-anova_terms=rownames(res$aov.tab);
-non_variable=which(anova_terms=="Residuals" | anova_terms=="Total");
-anova_terms=anova_terms[-non_variable];
-num_anova_terms=length(anova_terms);
+fitted_preds=rownames(clean_permanova_tab);
+num_fitted_preds=length(fitted_preds);
+cat("Fitted Predictors:\n");
+print(fitted_preds);
 
-mm_var_names=colnames(res$model.matrix);
-print(mm_var_names);
+###############################################################################
 
 bin_continuous_values=function(values, num_bins=10){
-	minv=min(values);	
-	maxv=max(values);
-	range=maxv-minv;
-	# Map values between 0 and 1
-	prop=(values-minv)/range;
-	# Scale value up to bin, and round, to quantize
-	closest=round(prop*num_bins,0);
-	log10range=log10(range);
-	trunc=signif(closest/num_bins*range+minv, 5)
-	# Remap values to original range and location
-	return(trunc);
+
+	h=hist(values, breaks=num_bins, plot=FALSE);
+	nbin=length(h$counts);
+
+	out_names=c();
+	for(i in 1:nbin){
+		catnam=paste("[", 
+			sprintf("% g", h$breaks[i]), 
+			" - ", 
+			sprintf("% g", h$breaks[i+1]), 
+			"]", sep="");
+		out_names=c(out_names, catnam);
+	}
+
+	#print(out_names);
+
+	out_bin=rep(out_names[1], length(values));
+	for(i in 1:nbin){
+		below_ix=values>=h$breaks[i];
+		out_bin[below_ix]=out_names[i];
+	}
+
+	#print(out_bin);
+
+	return(out_bin);
+	
 }
+
+#------------------------------------------------------------------------------
+
+flatten_terms=function(term_name, factor_df, num_target_bins=10){
+	# This function will look into the term/predictors values and
+	#   determine how to create bins for the values.
+
+	if(!is.data.frame(factor_df)){
+		cat("Error Input Matrix must be a data frame.\n");
+		quit();
+	}
+
+	cat("Flattening: ", term_name, "\n", sep="");
+	components=strsplit(term_name, ":")[[1]];
+	cat("Components: \n");
+	print(components);
+	num_components=length(components);
+	num_samples=nrow(factor_df);
+
+	# For some reason this the drop=F doesn't work.
+	if(num_components>1){
+		used_df=factor_df[,components];
+	}else{
+		used_df=as.data.frame(factor_df[,components,drop=F]);
+		colnames(used_df)=components;
+		rownames(used_df)=rownames(factor_df);
+	}
+
+	#print(used_df);
+
+	# Quantize the categories if component is continuous
+	used_bins=max(2, floor((num_target_bins)^(1/num_components)));
+
+	quantized=used_df;
+	is_continuous=F;
+	for(i in 1:num_components){
+
+		val=used_df[,i];
+		levels=unique(val);
+		num_levels=length(levels);
+
+		if(
+			is.ordered(val)||
+			is.factor(val)||
+			num_levels<=num_target_bins){
+				quantized[,i]=val;
+		}else{
+			quantized[,i]=bin_continuous_values(val, used_bins);
+			is_continuous=T;
+		}
+
+	}
+
+	# Combine components together to make a string
+	mapping=apply(quantized, 1, function(x){
+		paste(x, collapse=":")});
+
+	unique_combos=sort(unique(mapping));	
+	num_unique_combos=length(unique_combos);
+	level_ids=1:num_unique_combos;
+	names(level_ids)=unique_combos;
+
+	id_mapping=numeric(length(mapping));
+	names(id_mapping)=names(mapping);
+	for(i in 1:length(mapping)){
+		id_mapping[i]=level_ids[mapping[i]];
+	}
+
+	results=list();
+	results[["mapping"]]=mapping;
+	results[["level_names"]]=unique_combos;
+	results[["num_levels"]]=num_unique_combos;
+	results[["level_ids"]]=level_ids;
+	results[["id_mapping"]]=id_mapping;
+	results[["continuous"]]=is_continuous;
+
+	#print(mapping);
+	return(results);
+
+}
+
 
 par(oma=c(0,0,4,0));
 
-for(fact_id in 1:num_anova_terms){
+for(pred_ix in 1:num_fitted_preds){
 
-	term_name=anova_terms[fact_id];
+	pred_name=fitted_preds[pred_ix];
 
-	cat("Working on: ", term_name, "\n");
+	cat("---------------------------------------------------------\n");
+	cat("Working on: ", pred_name, "\n");
 
 	# Get ANOVA information
-	df=res$aov.tab[term_name,"Df"];
-	SS=res$aov.tab[term_name,"SumsOfSqs"];
-	MS=res$aov.tab[term_name,"MeanSqs"];
-	F=res$aov.tab[term_name,"F.Model"];
-	R2=res$aov.tab[term_name,"R2"];
-	pval=res$aov.tab[term_name,"Pr(>F)"];
-	eta_sqrd=SS/res$aov.tab["Total","SumsOfSqs"]; # eta^2: .1 small, .25 medium, .4 large
+	df=clean_permanova_tab[pred_name, "Df"];
+	Fstat=clean_permanova_tab[pred_name,"F"];
+	R2=clean_permanova_tab[pred_name,"R2"];
+	pval=clean_permanova_tab[pred_name,"Pr(>F)"];
 
 	signf_char="";
 	if(pval<.001){
@@ -1019,151 +1041,140 @@ for(fact_id in 1:num_anova_terms){
 		signf_char=" .";
 	}
 
-	cur_factor=term_name;
-	if(length(grep(":", term_name))){
-
-		# Break down main effects from term name, F1:F2
-		main_eff=strsplit(term_name, ":")[[1]];
-
-		# Build unique identifer for F1 x F2 combination
-		samp_to_crossfact=apply(factors[,main_eff], 1, function(x){
-			str=paste(as.character(x), collapse="_x_");
-			return(str);
-		});
-
-		# Determine number of unique combinations
-		unique_crosses=sort(unique(samp_to_crossfact));
-		num_unique_crosses=length(unique_crosses);
-
-		cur_factor=samp_to_crossfact;
-		factor_levels=unique_crosses;	
-		num_levels=num_unique_crosses;	
-
+		
+	if(R2 < 0.01){
+		effect_size = "Very Small";
+	}else if(R2 < 0.035){
+		effect_size = "Small";
+	}else if(R2 < 0.06){
+		effect_size = "Medium-Small";
+	}else if(R2 < 0.10){
+		effect_size = "Medium";
+	}else if(R2 < 0.14){
+		effect_size = "Medium-Large";
+	}else if(R2 < 0.20){
+		effect_size = "Large";
 	}else{
-		# Get factor information
-		cur_factor=factors[,term_name];
-		is_factor=is.factor(cur_factor);
-		is_ordered=is.ordered(cur_factor);
-		names(cur_factor)=rownames(factors);
-
-		if(!is_factor){
-			num_unique=length(unique(cur_factor));
-			cat("Number of unique 'levels':", num_unique, "\n");
-			if(num_unique>2){
-
-				if(is.numeric(cur_factor)){
-					cur_factor=bin_continuous_values(cur_factor, num_bins=10);
-				}
-
-				factor_levels=sort(unique(cur_factor));
-			}
-			factor_levels=sort(unique(cur_factor));
-		}else{
-			factor_levels=unique(cur_factor);
-		}
-		num_levels=length(factor_levels);
-
+		effect_size = "Very Large";
 	}
 
-	cat("Factor Levels for ", term_name, "\n");
-	cat("Is Factor? ", is_factor, "\n");
-	cat("Is Ordered? ", is_ordered, "\n");
-	print(factor_levels);
+	
+	cat("df: ", df, "\n");
+	cat("F: ", Fstat, "\n");
+	cat("pval: ", pval, "\n");
+	cat("Sgnf: ", signf_char, "\n");
+	cat("R2: ", R2, "\n");
+	cat("EffSize: ", effect_size, "\n");
 	cat("\n");
 
+	# Get Predictor info
+	flattened_terms_res=flatten_terms(pred_name, factors);
+	#print(flattened_terms_res);
+
+	num_levels=flattened_terms_res[["num_levels"]];
 	# allocate/assign colors to palette
-	if(num_levels>num_simple_colors || !is_factor){
-		palette(rev(rainbow(num_levels, start=0, end=4/6)));
-	}else{
-		palette(simple_colors);
+
+	dark_rainbow=function(n){
+		basic_rb=rev(rainbow(n, start=0, end=4/6));
+		hsv = rgb2hsv(col2rgb(basic_rb))
+		yellow = hsv["h", ] > 0.10 & hsv["h", ] < 0.25
+		hsv["v", yellow] = hsv["v", yellow] * 0.85
+		darkened_rb = hsv(
+		    hsv["h", ],
+		    hsv["s", ],
+		    hsv["v", ]
+		);
+		return(darkened_rb);
 	}
+	
+	palette(dark_rainbow(num_levels));
 
-	# Map factor levels to colors
-	fact_col=rep(-1,num_samples);
-	names(fact_col)=sample_names;
-	for(i in 1:num_samples){
-		fact_col[sample_names[i]]=which(factor_levels==cur_factor[sample_names[i]]);
-	}	
-
+	#----------------------------------------------------------------------
 	# Set up layout
 	layout(layout_mat);
 
 	XPAD=0.15;
 	YPAD=0.05
+	
+	samp_cols=flattened_terms_res[["id_mapping"]];
+	level_names=flattened_terms_res[["level_names"]];
+	is_continuous=flattened_terms_res[["continuous"]];
 
-	# Plot PCA
-	xrange=range(pc1); xspan=abs(diff(xrange));
-	yrange=range(pc2); yspan=abs(diff(yrange));
-	plot(pc1, pc2, type="n", 
-		xlab=sprintf("PC 1 (%3.1f%%)", PC_contributions[1]*100), 
-		ylab=sprintf("PC 2 (%3.1f%%)", PC_contributions[2]*100),
-		main=sprintf("PCA: (%3.1f%%)", (PC_contributions[1]+PC_contributions[2])*100),
-		xlim=c(xrange[1]-XPAD*xspan, xrange[2]+XPAD*xspan),
-		ylim=c(yrange[1]-YPAD*yspan, yrange[2]+YPAD*yspan)
-	);
-	text(pc1, pc2, labels=sample_names, cex=.7, col=fact_col[sample_names]);
+	#----------------------------------------------------------------------
+	# Plot nonMetric MDS 
 
-	# Plot MDS
-	xrange=range(mds1); xspan=abs(diff(xrange));
-	yrange=range(mds2); yspan=abs(diff(yrange));
-	plot(mds1, mds2, type="n",
+	xrange=range(nonMetMDS1); xspan=abs(diff(xrange));
+	yrange=range(nonMetMDS2); yspan=abs(diff(yrange));
+	sample_names=names(nonMetMDS1);
+	plot(nonMetMDS1, nonMetMDS2, type="n", 
 		xlab="Dim 1",
 		ylab="Dim 2",
-		main="MDS",
+		main="non-Metric MDS",
 		xlim=c(xrange[1]-XPAD*xspan, xrange[2]+XPAD*xspan),
 		ylim=c(yrange[1]-YPAD*yspan, yrange[2]+YPAD*yspan)
 	);
-	text(mds1, mds2, labels=sample_names, cex=.7, col=fact_col[sample_names]);
 
+	text(nonMetMDS1, nonMetMDS2, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
+
+	#----------------------------------------------------------------------
+	# Plot metric MDS
+
+	xrange=range(metMDS1); xspan=abs(diff(xrange));
+	yrange=range(metMDS2); yspan=abs(diff(yrange));
+	sample_names=names(metMDS1);
+	plot(metMDS1, metMDS2, type="n",
+		xlab=sprintf("Dim 1 (%3.1f%%)", PC_contributions[1]*100), 
+		ylab=sprintf("Dim 2 (%3.1f%%)", PC_contributions[2]*100),
+		main=sprintf("Metric MDS / PCoA: (%3.1f%%)", (PC_contributions[1]+PC_contributions[2])*100),
+		xlim=c(xrange[1]-XPAD*xspan, xrange[2]+XPAD*xspan),
+		ylim=c(yrange[1]-YPAD*yspan, yrange[2]+YPAD*yspan)
+	);
+	text(metMDS1, metMDS2, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
+
+	#----------------------------------------------------------------------
 	# Plot Legend
+
 	mar=par()$mar;
 	par(mar=c(0,0,0,0));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,10), ylab="", xlab="", xaxt="n", yaxt="n", bty="n");
-	legend(0,9, legend=factor_levels, fill=1:num_levels, bty="n", title=term_name);
-	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f%s\neta^2 = %5.4f", 
-		df, SS, MS, F, R2, pval, signf_char, eta_sqrd));
+	legend(0,9, legend=level_names, fill=1:num_levels, bty="n", title=pred_name);
+	text(5,2, sprintf("df = %i\nF = %5.4f\np-value = %5.4f%s\nR^2 = eta^2 = %5.4f\nEffect Size = %s", 
+		df, Fstat, pval, signf_char, R2, effect_size));
 	par(mar=mar);
 
-	# Label this page with the input file name
-	mtext(OutputFnameRoot, side=3, outer=T, line=1.5, cex=1.2, font=2);
+	mtext(pred_name, side=3, outer=T, line=1.5, cex=1.2, font=2);
 
+	###############################################################################
 	###############################################################################
 	# Plot Reoriented MDS with centroids
 
 	# Reorient points so that second factor level is on the the right of the first factor level
-	reoriented=orient_points_by_centroid(mds1, mds2, fact_col);
+	# samp_col is also the grouping by factor levels
+	reoriented=orient_points_by_centroid(metMDS1, metMDS2, samp_cols);
 	mds1_reori=reoriented$x;
 	mds2_reori=reoriented$y;
 	mds1_centoid=reoriented$x_centroids;
 	mds2_centoid=reoriented$y_centroids;
 
-	if(is.finite(Xrange[1])){
-		xrange=Xrange;
-	}else{
-		xrange=range(mds1_reori); xspan=abs(diff(xrange));
-	}
-
-	if(is.finite(Yrange[1])){
-		yrange=Yrange;
-	}else{
-		yrange=range(mds2_reori); yspan=abs(diff(yrange));
-	}
+	#----------------------------------------------------------------------
 
 	# Plot oriented with labels
 	plot(mds1_reori, mds2_reori, type="n",
 		xlab="Dim 1",
 		ylab="Dim 2",
-		main="Rotated MDS: Samples Labeled",
+		main="Rotated metric MDS: Samples Labeled",
 		xlim=xrange,
 		ylim=yrange
 	);
-	text(mds1_reori, mds2_reori, labels=sample_names, cex=.7, col=fact_col[sample_names]);
+	text(mds1_reori, mds2_reori, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
+
+	#----------------------------------------------------------------------
 
 	# Plot reoriented with glyphs
 	plot(mds1_reori, mds2_reori, type="n",
 		xlab="Dim 1",
 		ylab="Dim 2",
-		main="Rotated MDS: Centroids Labeled",
+		main="Rotated metric MDS: Centroids Labeled",
 		xlim=xrange,
 		ylim=yrange
 	);
@@ -1175,55 +1186,59 @@ for(fact_id in 1:num_anova_terms){
 	}else{
 		pt_size=1;
 	}
-	points(mds1_reori, mds2_reori, cex=pt_size, col=fact_col[sample_names]);
+	points(mds1_reori, mds2_reori, cex=pt_size, col=samp_cols[sample_names]);
 
 	# bull eye
-	points(mds1_centoid, mds2_centoid, cex=2, col=1:num_levels, pch=19);
-	points(mds1_centoid, mds2_centoid, cex=2, col="black", pch=21);
+	points(mds1_centoid, mds2_centoid, cex=1.9, col=1:num_levels, pch=19);
+	points(mds1_centoid, mds2_centoid, cex=1.9, col="black", pch=21);
 
-	# Only plot category labels if the labels are factors, i.e. no continuous values
-	if(is_factor || is_ordered){
-		text(mds1_centoid, mds2_centoid, labels=factor_levels, cex=1.2, font=2, pos=1);
+	if(!is_continuous){
+		text(mds1_centoid, mds2_centoid, labels=level_names, cex=1.1, font=2, pos=1);
 	}
 
+	#----------------------------------------------------------------------
 
 	# Plot Legend
 	mar=par()$mar;
 	par(mar=c(0,0,0,0));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,10), ylab="", xlab="", xaxt="n", yaxt="n", bty="n");
-	legend(0,9, legend=factor_levels, fill=1:num_levels, bty="n", title=term_name);
-	text(5,2, sprintf("df = %i\nSS = %5.4f\nMS = %5.4f\nF = %5.4f\nR^2 = %5.4f\np-value = %5.4f%s\neta^2 = %5.4f", 
-		df, SS, MS, F, R2, pval, signf_char, eta_sqrd));
+	legend(0,9, legend=level_names, fill=1:num_levels, bty="n", title=pred_name);
+	text(5,2, sprintf("df = %i\nF = %5.4f\np-value = %5.4f%s\nR^2 = eta^2 = %5.4f\nEffect Size = %s", 
+		df, Fstat, pval, signf_char, R2, effect_size));
 	par(mar=mar);
 
+	###############################################################################
 	###############################################################################
 
 	# Plot "residuals"
 	layout(variations_layout_mat);
 	par(mar=c(10, 4.1, 2.1, 2.1));
-	names_by_variation=names(variation)[variation_order];
-	barplot(variation[names_by_variation], names=names_by_variation, 
-		col=fact_col[names_by_variation], las=2, cex.names=.6,
+
+	persamp_rms_resid_dist_decr=sort(persamp_rms_resid_dist, decreasing=T);
+	names_by_decr_variation=names(persamp_rms_resid_dist_decr);
+
+	barplot(persamp_rms_resid_dist_decr, names=names_by_decr_variation, 
+		col=samp_cols[names_by_decr_variation], las=2, cex.names=.6,
 		main="Unexplained (Residuals) Distances");
 
 	# Plot Legend
 	mar=par()$mar;
 	par(mar=c(0,0,0,0));
 	plot(0,0, type="n", xlim=c(0,10), ylim=c(0,10), ylab="", xlab="", xaxt="n", yaxt="n", bty="n");
-	legend(0,9, legend=factor_levels, fill=1:num_levels, bty="n", title=term_name);
+	legend(0,9, legend=level_names, fill=1:num_levels, bty="n", title=pred_name);
 	par(mar=mar);
 
 	###############################################################################
 
 	# Plot dispersion analyses
-	factor_dispersion=compute_dispersion(variation, fact_col, factor_levels);
+	factor_dispersion=compute_dispersion(persamp_rms_resid_dist_decr, samp_cols, level_names);
 	#print(factor_dispersion);	
 	layout(variation_comparison_layout_mat);
-	ymax=max(variation);
+	ymax=max(persamp_rms_resid_dist_decr);
 		
 	par(mar=c(10, 4.1, 4.1, 2.1));
 	boxplot(factor_dispersion$points, col=1:num_levels, 
-		main=paste("Dispersion Ranges by Factor Level:\n", term_name, "\n", sep=""),
+		main=paste("Dispersion Ranges by Factor Level:\n", pred_name, "\n", sep=""),
 		ylim=c(0, ymax),
 		ylab="Unexplained (Residual) Distances",
 		xaxt="n",
@@ -1233,8 +1248,8 @@ for(fact_id in 1:num_anova_terms){
 	abline(h=0, col="grey");
 	
 	# Label levels under boxplot
-	num_levels=length(factor_dispersion$points);
-	level_names=names(factor_dispersion$points);
+	fd_num_levels=length(factor_dispersion$points);
+	fd_level_names=names(factor_dispersion$points);
 	for(i in 1:num_levels){
                 text(i, -ymax*.1, level_names[i], pos=4,
                         srt=-45, xpd=T, cex=min(c(1, (35/num_levels)), pos=4));
@@ -1247,109 +1262,55 @@ for(fact_id in 1:num_anova_terms){
 
 }
 
+
 ##############################################################################
-# Output Log
+# Output pvalue 
 
-sink(paste(OutputFnameRoot, rand, ".log.txt", sep=""));
+output_results=function(rootfn, tag_name, anova_tab){
 
-cat("\n");
-cat("Permanova Run: ", date(), "\n");
-cat("\n");
-cat("Distance Matrix Filename: ", DistmatFname, "\n", sep="");
-cat("Factors Filename: ", FactorsFname, "\n", sep="");
-cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
-cat("\n");
-cat("Number of Samples: ", num_samples, "\n", sep="");
-cat("\n");
+	print(anova_tab);
 
-num_factors=ncol(factors);
-num_samples=nrow(factors);
+	pred_names=rownames(anova_tab);
+	pvals=anova_tab[,"Pr(>F)"];
 
-factor_names=colnames(factors);
-
-cat("Factor Names:\n");
-cat("\t", paste(factor_names, collapse=", "), "\n", sep="");
-
-cat("\n");
-for(i in 1:num_factors){
-
-	unique_levels=unique(factors[,i]);
-	num_levels=length(unique_levels);
-	cat(num_levels, " levels in \"", factor_names[i], "\"\n", sep="");
-	#cat("\t", paste(unique_levels, collapse=", "), "\n", sep="");
-	ftable=table(factors[,i]);
-	table_hdr=names(ftable);
-	for(j in 1:length(table_hdr)){
-		cat("\t", table_hdr[j], ": ", ftable[j], "\n", sep="");
+	if(tag_name==""){
+		tag_name=rootfn;
 	}
-	cat("\n");
+
+	# As lines
+	outfn=paste(rootfn, ".perm.pval.rows.tsv", sep="");
+	fh=file(outfn, "w");
+	cat(file=fh, "#", paste(c("AnalysisName", pred_names), collapse="\t"), "\n", sep="");
+	cat(file=fh, paste(c(tag_name, sprintf("%5.4g", pvals)), collapse="\t"), "\n", sep="");
+	close(fh);
+
+	# As columns
+	outfn=paste(rootfn, ".perm.pval.cols.tsv", sep="");
+
+	signf_char=sapply(pvals, sig_char);
+	out_tab=cbind(rownames(anova_tab), sprintf("%5.4g", pvals), signf_char);
+	colnames(out_tab)=c(tag_name, "p-value", "signf_char");
+
+	write.table(x=out_tab, file=outfn, quote=F, sep="\t",
+		row.names=F, col.names=T);
 }
+output_results(OutputFnameRoot, TagName, clean_permanova_tab);
 
-print(res);
+#------------------------------------------------------------------------------
 
-cat("\n");
-sink();
-
-##############################################################################
-# Output pvalue table
-
-fh=file(paste(OutputFnameRoot, rand, ".pval.tsv", sep=""), "w");
-
-# Get factor names and pvalues from ANOVA table
-pval=res$aov.tab[["Pr(>F)"]];
-fact=rownames(res$aov.tab);
-
-num_fact=length(fact)-2;	# 2: Residuals and Total
-
-# Output factor names
-cat(file=fh, "# Dataset");
-for(i in 1:num_fact){
-	cat(file=fh, "\t", fact[i], sep="");
+output_anova_tab=function(rootfn, tag_name, adns_res){
+	# Whole table
+	outtxt=capture.output(print(adns_res, quotes=F));
+	outfn=paste(rootfn, ".perm.anova_tab.txt", sep="");
+	fh=file(outfn, "w");
+	cat(file=fh, paste(c(tag_name, "", outtxt,""), collapse="\n"));
+	close(fh);
 }
-cat(file=fh, "\n");
-
-# Output p-values
-cat(file=fh, OutputFnameRoot);
-for(i in 1:num_fact){
-	cat(file=fh, "\t", pval[i], sep="");
-}
-cat(file=fh, "\n");
-
-close(fh);
-
-##############################################################################
-# Output MANOVA files
-
-print(res$aov.tab);
-num_variables=nrow(res$aov.tab)-2;
-print(num_variables);
-
-if(TagName==""){
-	TagName="Variables";
-}
-
-outmat=matrix("", nrow=num_variables, ncol=3);
-colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
-varnames=rownames(res$aov.tab);
-pvals=res$aov.tab[,"Pr(>F)"];
-
-outmat[,TagName]=varnames[1:num_variables];
-outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
-outmat[,"Signf"]=sapply(pvals[1:num_variables], sig_char);
-
-print(outmat);
-
-write.table(outmat, file=paste(OutputFnameRoot, ".anova.summary.tsv", sep=""),
-	sep="\t", quote=FALSE, col.names=T, row.names=FALSE);
+output_anova_tab(OutputFnameRoot, TagName, adonis2_res);
 
 ##############################################################################
 
-if(Testing){
-	cat("**************************************************************\n");
-	cat("*  Reminder: Testing Flag was Set...                         *\n");
-	cat("**************************************************************\n");
-}
-
+cat("--------------------------------------------------------------------------\n");
 cat("Done.\n");
 dev.off();
 
