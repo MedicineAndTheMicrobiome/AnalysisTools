@@ -1118,16 +1118,17 @@ for(pred_ix in 1:num_fitted_preds){
 
 	#----------------------------------------------------------------------
 	# Plot metric MDS
+	# Combine the x and y ranges, so that rotation keeps all the points on the plot
+	xyrange=range(c(metMDS1, metMDS2));
+	xyspan=abs(diff(xyrange));
 
-	xrange=range(metMDS1); xspan=abs(diff(xrange));
-	yrange=range(metMDS2); yspan=abs(diff(yrange));
 	sample_names=names(metMDS1);
 	plot(metMDS1, metMDS2, type="n",
 		xlab=sprintf("Dim 1 (%3.1f%%)", PC_contributions[1]*100), 
 		ylab=sprintf("Dim 2 (%3.1f%%)", PC_contributions[2]*100),
 		main=sprintf("Metric MDS / PCoA: (%3.1f%%)", (PC_contributions[1]+PC_contributions[2])*100),
-		xlim=c(xrange[1]-XPAD*xspan, xrange[2]+XPAD*xspan),
-		ylim=c(yrange[1]-YPAD*yspan, yrange[2]+YPAD*yspan)
+		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
+		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
 	);
 	text(metMDS1, metMDS2, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
 
@@ -1163,8 +1164,8 @@ for(pred_ix in 1:num_fitted_preds){
 		xlab="Dim 1",
 		ylab="Dim 2",
 		main="Rotated metric MDS: Samples Labeled",
-		xlim=xrange,
-		ylim=yrange
+		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
+		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
 	);
 	text(mds1_reori, mds2_reori, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
 
@@ -1175,8 +1176,8 @@ for(pred_ix in 1:num_fitted_preds){
 		xlab="Dim 1",
 		ylab="Dim 2",
 		main="Rotated metric MDS: Centroids Labeled",
-		xlim=xrange,
-		ylim=yrange
+		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
+		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
 	);
 
 	if(num_samples>100){
