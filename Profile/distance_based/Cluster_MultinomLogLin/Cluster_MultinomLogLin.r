@@ -295,7 +295,7 @@ relevel_factors=function(factors, ref_lev_mat){
 			target_level=ref_lev_mat[i, 1];
 			tmp=factors[,relevel_target];
 			if(length(intersect(target_level, tmp))){
-				tmp=relevel(tmp, target_level);
+				tmp=relevel(as.factor(tmp), target_level);
     				factors[,relevel_target]=tmp;
 			}else{
 				cat("WARNING: Target level '", target_level,
