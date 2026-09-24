@@ -906,31 +906,52 @@ print(fitted_preds);
 ###############################################################################
 
 bin_continuous_values=function(values, num_bins=10){
+	# Use hist to create bins, then identify the bin for each sample/value
 
+	# Use hist to identify ideal bin ranges and labels
 	h=hist(values, breaks=num_bins, plot=FALSE);
 	nbin=length(h$counts);
 
-	out_names=c();
+	cat("Breaks:\n");
+	print(h$breaks);
+	brks=h$breaks;
+
+	# Make all bin name formats the same
+	formatted=format(brks, scientific=NA, trim=F);
+
+	bin_names=c();
 	for(i in 1:nbin){
-		catnam=paste("[", 
-			sprintf("% g", h$breaks[i]), 
+		catnam=paste(
+			"[",
+			formatted[i],
 			" - ", 
-			sprintf("% g", h$breaks[i+1]), 
+			formatted[i+1], 
 			"]", sep="");
-		out_names=c(out_names, catnam);
+		bin_names=c(bin_names, catnam);
 	}
 
-	#print(out_names);
+	# Iteratively identify which bin each value belongs to.
+	# If a value is above the lower bound range for a bin, assign it to that bin.
+	num_values=length(values);
+	out_bin=rep(bin_names[1], num_values);
+	out_ids=rep(1, num_values);
 
-	out_bin=rep(out_names[1], length(values));
+	names(out_bin)=names(values);
+	names(out_ids)=names(values);
+
 	for(i in 1:nbin){
-		below_ix=values>=h$breaks[i];
-		out_bin[below_ix]=out_names[i];
+		abv_ix=values>=h$breaks[i];
+		out_bin[abv_ix]=bin_names[i];
+		out_ids[abv_ix]=i;
 	}
 
-	#print(out_bin);
+	res=list();
+	res[["sample_map_names"]]=out_bin;	# SampID to Bin Names
+	res[["sample_map_id"]]=out_ids;		# SampID to Bin IDs
+	res[["level_names"]]=bin_names;
 
-	return(out_bin);
+	print(res);
+	return(res);
 	
 }
 
@@ -952,21 +973,18 @@ flatten_terms=function(term_name, factor_df, num_target_bins=10){
 	num_components=length(components);
 	num_samples=nrow(factor_df);
 
-	# For some reason this the drop=F doesn't work.
-	if(num_components>1){
-		used_df=factor_df[,components];
-	}else{
-		used_df=as.data.frame(factor_df[,components,drop=F]);
-		colnames(used_df)=components;
-		rownames(used_df)=rownames(factor_df);
-	}
+	used_df=as.data.frame(factor_df[,components,drop=F]);
+	colnames(used_df)=components;
+	rownames(used_df)=rownames(factor_df);
 
 	#print(used_df);
 
 	# Quantize the categories if component is continuous
 	used_bins=max(2, floor((num_target_bins)^(1/num_components)));
 
-	quantized=used_df;
+	quantized_val=used_df;
+	quantized_levels=list();
+
 	is_continuous=F;
 	for(i in 1:num_components){
 
@@ -978,22 +996,39 @@ flatten_terms=function(term_name, factor_df, num_target_bins=10){
 			is.ordered(val)||
 			is.factor(val)||
 			num_levels<=num_target_bins){
-				quantized[,i]=val;
+				quantized_val[,i]=as.character(val);
+				quantized_levels[[i]]=sort(as.character(levels));
 		}else{
-			quantized[,i]=bin_continuous_values(val, used_bins);
+			bin_res=bin_continuous_values(val, used_bins);
+			quantized_val[,i]=bin_res[["sample_map_names"]];
+			quantized_levels[[i]]=bin_res[["level_names"]];
 			is_continuous=T;
 		}
 
 	}
 
 	# Combine components together to make a string
-	mapping=apply(quantized, 1, function(x){
+	mapping=apply(quantized_val, 1, function(x){
 		paste(x, collapse=":")});
 
-	unique_combos=sort(unique(mapping));	
-	num_unique_combos=length(unique_combos);
-	level_ids=1:num_unique_combos;
-	names(level_ids)=unique_combos;
+	# Create new mapping from category to ID
+	combo_from_list=function(lst, sep=":"){
+		num_elements=length(lst);
+		comb_out=lst[[1]];
+		if(num_elements>1){
+			for(i in 2:num_elements){
+				comb_out=as.vector(t(outer(comb_out, lst[[i]], paste, sep=":")));
+			}	
+		}
+		return(comb_out);
+	}
+	possible_combos=combo_from_list(quantized_levels);
+	used_combos=intersect(possible_combos, mapping);
+
+	num_used_combos=length(used_combos);
+	level_ids=1:num_used_combos;
+	names(level_ids)=used_combos;
+
 
 	id_mapping=numeric(length(mapping));
 	names(id_mapping)=names(mapping);
@@ -1002,14 +1037,16 @@ flatten_terms=function(term_name, factor_df, num_target_bins=10){
 	}
 
 	results=list();
-	results[["mapping"]]=mapping;
-	results[["level_names"]]=unique_combos;
-	results[["num_levels"]]=num_unique_combos;
-	results[["level_ids"]]=level_ids;
-	results[["id_mapping"]]=id_mapping;
-	results[["continuous"]]=is_continuous;
+	results[["mapping"]]=mapping;			# SampID to Bin Name
+	results[["level_names"]]=used_combos;		# Unique Used Bin Names
+	results[["num_levels"]]=num_used_combos;	# Num Used Bin Names 
+	results[["level_ids"]]=level_ids;		# Bin Name to BinID (ordered)
+	results[["id_mapping"]]=id_mapping;		# SampID to BinID
+	results[["continuous"]]=is_continuous;		# Were the values continous (non-categorical)
 
-	#print(mapping);
+	#print(used_df);
+	#print(results);
+
 	return(results);
 
 }
@@ -1230,7 +1267,6 @@ for(pred_ix in 1:num_fitted_preds){
 	par(mar=mar);
 
 	###############################################################################
-
 	# Plot dispersion analyses
 	factor_dispersion=compute_dispersion(persamp_rms_resid_dist_decr, samp_cols, level_names);
 	#print(factor_dispersion);	
