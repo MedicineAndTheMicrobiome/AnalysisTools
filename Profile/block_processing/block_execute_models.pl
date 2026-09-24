@@ -539,7 +539,8 @@ sub run_distance_based{
 		-M $output_dir/cov_var \
 		-o $output_dir/distance/$PERMA_DIR/$model_name \
 		-q $output_dir/cov_var \
-		-t $tag_name
+		-t $tag_name \
+		$add_reflev
 	";
 	run_command("Permanova", "perma", $cmd, "$output_dir/distance/$PERMA_DIR");
 		
