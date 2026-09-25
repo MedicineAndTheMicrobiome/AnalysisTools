@@ -14,6 +14,7 @@ params=c(
 	"model_formula", "m", 2, "character",
 	"model_variables_file", "M", 2, "character",
 	"required_var", "q", 2, "character",
+	"reference_levels", "r", 2, "character",
 	"blocking", "b", 2, "character",
 	"outputroot", "o", 2, "character",
 	"strip_samples_nas", "s", 2, "logical",
@@ -27,6 +28,8 @@ script_name=unlist(strsplit(commandArgs(FALSE)[4],"=")[1])[2];
 script_path=paste(head(strsplit(script_name, "/")[[1]], -1), collapse="/");
 source(paste(script_path, "/../../../Metadata/RemoveNAs/Remove_NAs.r", sep=""));
 
+source(paste(script_path, "/../../../Metadata/InputFileLibrary/InputFileLibrary.r", sep=""));
+
 usage = paste(
 	"\nUsage:\n", script_name, "\n",
 	"	-d <distance matrix>\n",
@@ -37,6 +40,7 @@ usage = paste(
 	"	[-M <model variables filename>]\n",
 	"\n",
 	"	[-q <required variables list>]\n",
+	"	[-r <reference levels file>]\n",
 	"\n",
 	"	[-b <factor to use as blocking variable>]\n",
 	"	[-t <tag name>]\n",
@@ -90,6 +94,12 @@ if(length(opt$model_variables_file)){
         ModelVariablesFile="";
 }
 
+if(!length(opt$reference_levels)){
+        ReferenceLevelsFile="";
+}else{
+        ReferenceLevelsFile=opt$reference_levels;
+}
+
 DistmatFname=opt$distmat;
 FactorsFname=opt$factors;
 
@@ -141,6 +151,7 @@ cat("\n");
 cat("Distance Matrix Filename: ", DistmatFname, "\n", sep="");
 cat("Factors Filename: ", FactorsFname, "\n", sep="");
 cat("Output Filename Root: ", OutputFnameRoot, "\n", sep="");
+cat("Reference Levels File: ", ReferenceLevelsFile, "\n", sep="");
 cat("\n");
 
 if(ModelFormula!=""){
@@ -477,6 +488,13 @@ print(factor_names);
 num_factor_samples=length(factor_sample_names);
 cat(num_factor_samples, " Samples in factor file.\n", sep="");
 cat("\n");
+
+if(ReferenceLevelsFile!=""){
+        ref_lev_mat=load_reference_levels_file(ReferenceLevelsFile)
+        factors=relevel_factors(factors, ref_lev_mat);
+}else{
+        cat("* No Reference Levels File specified.                        *\n");
+}
 
 ###############################################################################
 
