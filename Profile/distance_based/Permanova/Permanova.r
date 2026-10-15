@@ -288,6 +288,7 @@ compute_dispersion=function(residuals, groups, group_names){
 	for(li1 in 1:num_levels){
 
 		l1_res=residuals[groups==li1];
+		l1_res=l1_res[!is.na(l1_res)];
 
 		# Store the grouping now, even we don't need it for this function.
 		points[[group_names[li1]]]=l1_res;
@@ -302,9 +303,15 @@ compute_dispersion=function(residuals, groups, group_names){
 
 				#cat(cur_levels[li1], " vs. ", cur_levels[li2], "\n");
 				l2_res=residuals[groups==li2];
+				l2_res=l2_res[!is.na(l2_res)];
 
-				result=wilcox.test(l1_res, l2_res);
-				pval_matrix[li1, li2]=result$p.value;
+				if(length(l1_res)>=2 && length(l2_res)>=2){
+					result=wilcox.test(l1_res, l2_res);
+					pval=result$p.value;
+				}else{
+					pval=1.00;
+				}
+				pval_matrix[li1, li2]=pval;
 			
 			}
 		}
@@ -1144,13 +1151,25 @@ for(pred_ix in 1:num_fitted_preds){
 	
 	palette(dark_rainbow(num_levels));
 
+	comp_plot_limits=function(xval, yval, prop_x_pad=.2, prop_y_pad=.1){
+		x_range=range(xval);
+		y_range=range(yval);
+		xspan=x_range[2]-x_range[1];
+		yspan=y_range[2]-y_range[1];
+		res=list();
+		res[["x"]]=c(
+			x_range[1]-prop_x_pad*xspan,
+			x_range[2]+prop_x_pad*xspan);
+		res[["y"]]=c(
+			y_range[1]-prop_y_pad*yspan,
+			y_range[2]+prop_y_pad*yspan);
+		return(res);
+	}
+
 	#----------------------------------------------------------------------
 	# Set up layout
 	layout(layout_mat);
 
-	XPAD=0.15;
-	YPAD=0.05
-	
 	samp_cols=flattened_terms_res[["id_mapping"]];
 	level_names=flattened_terms_res[["level_names"]];
 	is_continuous=flattened_terms_res[["continuous"]];
@@ -1158,15 +1177,18 @@ for(pred_ix in 1:num_fitted_preds){
 	#----------------------------------------------------------------------
 	# Plot nonMetric MDS 
 
-	xrange=range(nonMetMDS1); xspan=abs(diff(xrange));
-	yrange=range(nonMetMDS2); yspan=abs(diff(yrange));
+	#xrange=range(nonMetMDS1); xspan=abs(diff(xrange));
+	#yrange=range(nonMetMDS2); yspan=abs(diff(yrange));
+
+	lims=comp_plot_limits(nonMetMDS1, nonMetMDS2);
+
 	sample_names=names(nonMetMDS1);
 	plot(nonMetMDS1, nonMetMDS2, type="n", 
 		xlab="Dim 1",
 		ylab="Dim 2",
 		main="non-Metric MDS",
-		xlim=c(xrange[1]-XPAD*xspan, xrange[2]+XPAD*xspan),
-		ylim=c(yrange[1]-YPAD*yspan, yrange[2]+YPAD*yspan)
+		xlim=lims[["x"]],
+		ylim=lims[["y"]]
 	);
 
 	text(nonMetMDS1, nonMetMDS2, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
@@ -1174,16 +1196,16 @@ for(pred_ix in 1:num_fitted_preds){
 	#----------------------------------------------------------------------
 	# Plot metric MDS
 	# Combine the x and y ranges, so that rotation keeps all the points on the plot
-	xyrange=range(c(metMDS1, metMDS2));
-	xyspan=abs(diff(xyrange));
+
+	lims=comp_plot_limits(metMDS1, metMDS2);
 
 	sample_names=names(metMDS1);
 	plot(metMDS1, metMDS2, type="n",
 		xlab=sprintf("Dim 1 (%3.1f%%)", PC_contributions[1]*100), 
 		ylab=sprintf("Dim 2 (%3.1f%%)", PC_contributions[2]*100),
 		main=sprintf("Metric MDS / PCoA: (%3.1f%%)", (PC_contributions[1]+PC_contributions[2])*100),
-		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
-		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
+		xlim=lims[["x"]],
+		ylim=lims[["y"]]
 	);
 	text(metMDS1, metMDS2, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
 
@@ -1213,26 +1235,28 @@ for(pred_ix in 1:num_fitted_preds){
 	mds2_centoid=reoriented$y_centroids;
 
 	#----------------------------------------------------------------------
+	lims=comp_plot_limits(mds1_reori, mds2_reori);
 
 	# Plot oriented with labels
 	plot(mds1_reori, mds2_reori, type="n",
 		xlab="Dim 1",
 		ylab="Dim 2",
 		main="Rotated metric MDS: Samples Labeled",
-		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
-		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
+		xlim=lims[["x"]],
+		ylim=lims[["y"]]
 	);
 	text(mds1_reori, mds2_reori, labels=sample_names, cex=.7, col=samp_cols[sample_names]);
 
 	#----------------------------------------------------------------------
+	lims=comp_plot_limits(mds1_reori, mds2_reori, prop_x_pad=.05, prop_y_pad=.05);
 
 	# Plot reoriented with glyphs
 	plot(mds1_reori, mds2_reori, type="n",
 		xlab="Dim 1",
 		ylab="Dim 2",
 		main="Rotated metric MDS: Centroids Labeled",
-		xlim=c(xyrange[1]-XPAD*xyspan, xyrange[2]+XPAD*xyspan),
-		ylim=c(xyrange[1]-YPAD*xyspan, xyrange[2]+YPAD*xyspan)
+		xlim=lims[["x"]],
+		ylim=lims[["y"]]
 	);
 
 	if(num_samples>100){
