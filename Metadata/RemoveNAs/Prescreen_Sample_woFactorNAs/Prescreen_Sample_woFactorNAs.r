@@ -140,12 +140,14 @@ cat("\n");
 ###############################################################################
 
 load_factor_file=function(fn){
-        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=1, check.names=F, comment.char="", quote="");
+        inmat=read.delim(fn, sep="\t", header=TRUE, row.names=NULL, check.names=F, comment.char="", quote="");
 
         # Changes spaces to underscore
         var_names=colnames(inmat);
         var_names=gsub(" ", "_", var_names);
         colnames(inmat)=var_names;
+
+	rownames(inmat)=inmat[,1];
 
         cat("  Num Factors: ", ncol(inmat), "\n", sep="");
         cat("  Num Samples: ", nrow(inmat), "\n", sep="");
