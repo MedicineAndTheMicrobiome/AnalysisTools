@@ -626,7 +626,13 @@ if(!(-e $OutputDir)){
 
 ###############################################################################
 
-my $cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var";
+my $cmd;
+if($SampID_Colname ne ""){
+	$cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var; echo $SampID_Colname >> $OutputDir/all_req_var";
+}else{
+	$cmd="cat $Covariates $GroupVar > $OutputDir/all_req_var";
+}
+
 run_command("Combine Cov/Grp variables for NA prescreen", "na_prescreen_concat_var",
 	$cmd, "$OutputDir");
 
