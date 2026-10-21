@@ -1252,7 +1252,7 @@ for(i in 1:num_pc_at_cutoff){
 	out_pc_cormat_header[((i-1)*3)+2]="Correlation";
 
 	# Write proxy top correlates to file
-	cat(file=fh, "ProxyName\tTopCorrelates\tCorrel_wProxy\n");
+	cat(file=fh, "PCName\tTopCorrelates\tCorrel_wPC\n");
 	cat(file=fh, proxyname, "\t\n", sep="");
 	cat(file=fh, paste("",
 		names(pc_pred_cor_ordered)[1:num_corr_bars_to_plot], 
@@ -1306,7 +1306,7 @@ rownames(out_pc_cormat)=paste(1:ncol(scores), ".)", sep="");
 
 cat("Outputing PC to Variable Correlations:\n");
 fname=paste(OutputFnameRoot, ".pc_var_cor.tsv", sep="");
-write.table(out_pc_cormat, file=fname, col.names=NA, append=T, quote=F, sep="\t");
+write.table(out_pc_cormat, file=fname, col.names=NA, append=F, quote=F, sep="\t");
 
 ##############################################################################
 
