@@ -6,6 +6,7 @@ library(MASS);
 library(vegan);
 library('getopt');
 library(car);
+library(effectsize);
 options(useFancyQuotes=F);
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
@@ -1079,6 +1080,20 @@ rownames(coeff_matrix)=colnames(model_matrix);
 colnames(pval_matrix)=div_names;
 rownames(pval_matrix)=colnames(model_matrix);
 
+eta2_category=function(x){
+	cut(x,
+	breaks = c(-Inf, 0.005, 0.02, 0.04, 0.08, 0.12, 0.16, Inf),
+	labels = c(
+		"Very small",
+		"Small",
+		"Medium-small",
+		"Medium",
+		"Medium-large",
+		"Large",
+		"Very large"
+	), right = FALSE);
+}
+
 
 # Fit regression model and ANOVA analysis
 for(i in 1:num_div_idx){
@@ -1116,6 +1131,39 @@ for(i in 1:num_div_idx){
 		aov_model,
 		"", aov_sumtext));
 
+
+	#######################################################################
+	# Compute Effect Sizes
+	t3_anova=Anova(fit, type=3);
+	print(t3_anova);
+	eta_sqrd=eta_squared(t3_anova);
+
+	#print(eta_sqrd);
+	#print(names(eta_sqrd));
+
+	eta2_arr=(eta_sqrd[["Eta2_partial"]]);
+	
+	out_char_mat=cbind(
+		eta_sqrd[["Parameter"]],
+		sprintf("%6.4f", eta2_arr),
+		as.character(eta2_category(eta2_arr))
+		);
+
+	colnames(out_char_mat)=c("Parameter", "Eta^2", "Size");
+	rownames(out_char_mat)=1:nrow(out_char_mat);
+	print(out_char_mat);
+
+	plot_text(c(
+		paste("Effect Size Analysis w/ Eta^2 for: ", div_names[i]),
+		capture.output(print(eta_sqrd)),
+		"",
+		"",
+		"",
+		capture.output(print(out_char_mat, quote=F))
+		));
+
+
+	#######################################################################
 	# Output regression coefficients and significance
 	sumtext=(capture.output(summary(fit)));
 	plot_text(c(
