@@ -417,6 +417,40 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 
 }
 
+###############################################################################
+
+eta2_category=function(x){
+	cut(x,
+		breaks = c(-Inf, 0.005, 0.02, 0.04, 0.08, 0.12, 0.16, Inf),
+		labels = c(
+			"Very small",
+			"Small",
+			"Medium-small",
+			"Medium",
+			"Medium-large",
+			"Large",
+			"Very large"
+		), right = FALSE);
+}
+
+signf_char=function(val){
+
+	signf_char_unit=function(val){
+		if(!is.null(val) && !is.nan(val) && !is.na(val)){
+			if(val <= .0001){ return("***");}
+			if(val <= .001 ){ return("** ");}
+			if(val <= .01  ){ return("*  ");}
+			if(val <= .05  ){ return(":  ");}
+			if(val <= .1   ){ return(".  ");}
+			return("   ");
+		}else{
+			return("   ");
+		}
+	}
+
+	sapply(val, signf_char_unit);
+}
+
 add_sign_col=function(coeff){
 
 	if(nrow(coeff)==0){
@@ -427,22 +461,9 @@ add_sign_col=function(coeff){
 		pval_ix=which(cnames=="Pr(>|t|)");
 		pval=coeff[,pval_ix];
 
-		sig_char=function(val){
-			if(!is.null(val) && !is.nan(val) && !is.na(val)){
-				if(val <= .0001){ return("***");}
-				if(val <= .001 ){ return("** ");}
-				if(val <= .01  ){ return("*  ");}
-				if(val <= .05  ){ return(":  ");}
-				if(val <= .1   ){ return(".  ");}
-				return(" ");
-			}else{
-				return(" ");
-			}
-		}
-
-		sig_arr=sapply(pval, sig_char);
+		sig_arr=signf_char(pval);
 		fdr=round(p.adjust(pval, method="fdr"), 4);
-		fdr_sig_char=sapply(fdr, sig_char);
+		fdr_sig_char=signf_char(fdr);
 		#out_mat=cbind(coeff, fdr);
 
 		fmt=function(x){
@@ -457,16 +478,6 @@ add_sign_col=function(coeff){
 	}	
 }
 
-signf_char=function(val){
-	if(!is.null(val) && !is.nan(val) && !is.na(val)){
-		if(val <= .0001){ return("***");}
-		if(val <= .001 ){ return("** ");}
-		if(val <= .01  ){ return("*  ");}
-		if(val <= .05  ){ return(":  ");}
-		if(val <= .1   ){ return(".  ");}
-	}
-	return(" ");
-}
 
 ###############################################################################
 
