@@ -420,17 +420,25 @@ paint_matrix=function(mat, title="", subtitle="", plot_min=NA, plot_max=NA, log_
 ###############################################################################
 
 eta2_category=function(x){
-	cut(x,
-		breaks = c(-Inf, 0.005, 0.02, 0.04, 0.08, 0.12, 0.16, Inf),
-		labels = c(
-			"Very small",
-			"Small",
-			"Medium-small",
-			"Medium",
-			"Medium-large",
-			"Large",
-			"Very large"
-		), right = FALSE);
+
+	if(length(x)==0){
+		cat("Length of array for eta^2 categorization was 0.\n");
+		return(NULL);
+	}else{
+		res=cut(x,
+			breaks = c(-Inf, 0.005, 0.02, 0.04, 0.08, 0.12, 0.16, Inf),
+			labels = c(
+				"Very small",
+				"Small",
+				"Medium-small",
+				"Medium",
+				"Medium-large",
+				"Large",
+				"Very large"
+			), right = FALSE);
+
+		return(res);
+	}
 }
 
 signf_char=function(val){
