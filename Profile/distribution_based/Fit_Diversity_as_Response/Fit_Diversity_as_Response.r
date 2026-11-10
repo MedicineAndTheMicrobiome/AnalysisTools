@@ -1240,7 +1240,6 @@ stab=signf_as_table(coeff_matrix, pval_matrix, pomega2_matrix);
 options(width=1000);
 plot_text(capture.output(print(stab, quote=F)), .8);
 
-dev.off();
 
 ##############################################################################
 
@@ -1299,6 +1298,12 @@ if(any(class(try_res)=="try-error")){
 }else{
 	cat("MANOVA:\n");
 	print(manova_res);
+
+	plot_text(c(
+		"MANOVA Across the Diversity Indices:",
+		"",
+		capture.output(print(manova_res, quote=F))
+		));
 }
 
 if(length(manova_res)){
@@ -1321,6 +1326,7 @@ write.table(outmat, file=paste(OutputRoot, ".div_as_resp.anova.summary.tsv", sep
 
 ##############################################################################
 
+dev.off();
 cat("Done.\n");
 print(warnings());
 q(status=0);
