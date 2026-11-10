@@ -10,6 +10,7 @@ library(effectsize);
 options(useFancyQuotes=F);
 
 source('~/git/AnalysisTools/Metadata/RemoveNAs/Remove_NAs.r');
+source('~/git/AnalysisTools/Metadata/OutputFileLibrary/OutputFileLibrary.r');
 
 params=c(
 	"summary_file", "s", 1, "character",
@@ -999,7 +1000,7 @@ plot_overlapping_histograms=function(raw, factors, model_string, title, bin_cont
 
 ##############################################################################
 
-signf_as_table=function(coef_mat, pval_mat){
+signf_as_table=function(coef_mat, pval_mat, eff_mat){
 
 	num_rows=nrow(coef_mat);
 	num_cols=ncol(coef_mat);
@@ -1007,9 +1008,11 @@ signf_as_table=function(coef_mat, pval_mat){
 
 	cnames=colnames(coef_mat);
 	rnames=rownames(coef_mat);
-	tab_headers=c("Row", "Column", "Coefficient", "P-value", "Formatted");
+	tab_headers=c("Row", "Column", "Coefficient", "P-value", "Effect", "Formatted");
 	comb_tab=matrix(NA, nrow=num_entries, ncol=length(tab_headers));
 	colnames(comb_tab)=tab_headers;
+
+	eff_terms=rownames(eff_mat);
 
 	pval_val=numeric(num_entries);
 
@@ -1024,8 +1027,17 @@ signf_as_table=function(coef_mat, pval_mat){
 				comb_tab[line_ix, "Coefficient"]=sprintf("%.5g", coef_mat[i,j]);
 				comb_tab[line_ix, "P-value"]=sprintf("%.5g", pval);
 
+				if(rnames[i] %in% eff_terms){
+					eff_val=eff_mat[rnames[i], cnames[j]];
+				}else{
+					eff_val=NA;
+				}
+
+				comb_tab[line_ix, "Effect"]=sprintf("%.2g", eff_val);
+
 				comb_tab[line_ix, "Formatted"]=
-					sprintf("(coef = %.4f, p-val = %.3g)", coef_mat[i,j], pval);
+					sprintf("(coef = %.4f, p-val = %.3g, eff = %.2g)", 
+						coef_mat[i,j], pval, eff_val);
 				pval_val[line_ix]=pval;
 				line_ix=line_ix+1;
 			}
@@ -1057,6 +1069,7 @@ rsqrd_mat=matrix(0, nrow=num_div_idx, ncol=2);
 colnames(rsqrd_mat)=c("R^2", "Adj. R^2");
 rownames(rsqrd_mat)=div_names;
 
+
 # Build model matrix so we know how many coefficients to expect.
 if(ModelFormula==""){
 	model_string= paste("trans ~", 
@@ -1069,8 +1082,10 @@ trans=rep(0, nrow(factors));
 model_matrix=model.matrix(as.formula(model_string), data=factors);
 num_coeff=ncol(model_matrix);
 
+
+
 # Matrices to store coefficents and p-values
-cat("Allocating coeff and pval matrices...\n");
+cat("Allocating coeff, pval, partial effects matrices...\n");
 coeff_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
 pval_matrix=matrix(NA, nrow=num_coeff, ncol=num_div_idx);
 
@@ -1080,42 +1095,57 @@ rownames(coeff_matrix)=colnames(model_matrix);
 colnames(pval_matrix)=div_names;
 rownames(pval_matrix)=colnames(model_matrix);
 
-eta2_category=function(x){
-	cut(x,
-	breaks = c(-Inf, 0.005, 0.02, 0.04, 0.08, 0.12, 0.16, Inf),
-	labels = c(
-		"Very small",
-		"Small",
-		"Medium-small",
-		"Medium",
-		"Medium-large",
-		"Large",
-		"Very large"
-	), right = FALSE);
-}
+# Allocate matrix for effect sizes
+terms=attr(terms(as.formula(model_string)), "term.labels");
+cat("Terms:\n");
+print(terms);
+pomega2_matrix=matrix(NA, nrow=length(terms), ncol=num_div_idx);
+colnames(pomega2_matrix)=div_names;
+rownames(pomega2_matrix)=terms;
+#print(pomega2_matrix);
 
+#------------------------------------------------------------------------------
 
 # Fit regression model and ANOVA analysis
 for(i in 1:num_div_idx){
 
-	cat("Working on: ", div_names[i], "\n", sep="");
+	current_divname=div_names[i];
 
-	raw=div_mat[, div_names[i]];
+	cat("Working on: ", current_divname, "\n", sep="");
+	plot_title_page(current_divname);
 
-	plot_diversity_with_factors(raw, factors, model_string, div_names[i], 6);
-	plot_overlapping_histograms(raw, factors, model_string, title=div_names[i], 6);
+	raw=div_mat[, current_divname];
 
-	trans=transformed[, div_names[i]];
-	print(model.matrix(as.formula(model_string), data=factors));
+	plot_diversity_with_factors(raw, factors, model_string, current_divname, 6);
+	plot_overlapping_histograms(raw, factors, model_string, title=current_divname, 6);
+
+	#----------------------------------------------------------------------
+	# Perform lm fit on transformed diversity
+	trans=transformed[, current_divname];
 	fit=lm(as.formula(model_string), data=factors);
 	print(fit);
 
 	summ=summary(fit);
 	print(summ);
 
+	#----------------------------------------------------------------------
+	# Compute Effect Sizes
+	t3_anova=Anova(fit, type=3);
+	print(t3_anova);
+
+	# Uncorrected effect sizes:
+	#eta_sqrd=eta_squared(t3_anova, partial=F);
+	#eta_sqrd_partial=eta_squared(t3_anova, partial=T);
+
+	omega_sqrd=omega_squared(t3_anova, partial=F);
+	omega_sqrd_partial=omega_squared(t3_anova, partial=T);
+
+	#----------------------------------------------------------------------
+	# Save Coefficient of Determination 
 	rsqrd_mat[i, 1]=summ$r.squared;
 	rsqrd_mat[i, 2]=summ$adj.r.squared;
 
+	#######################################################################
 	# Output ANOVA
 	if(ModelFormula!=""){
 		aov_model=paste("trans ~", ModelFormula);
@@ -1123,39 +1153,32 @@ for(i in 1:num_div_idx){
 		aov_model=model_string;
 	}
 
-	aov_sumtext=capture.output(summary(aov(as.formula(aov_model), data=factors)));
-
+	#aov_sumtext=capture.output(summary(aov(as.formula(aov_model), data=factors)));
+	aov_sumtext=capture.output(t3_anova);
 	plot_text(c(
-		paste("ANOVA for: ", div_names[i]),
+		paste("ANOVA for: ", current_divname),
 		"",
 		aov_model,
 		"", aov_sumtext));
 
-
 	#######################################################################
-	# Compute Effect Sizes
-	t3_anova=Anova(fit, type=3);
-	print(t3_anova);
-	eta_sqrd=eta_squared(t3_anova);
-
-	#print(eta_sqrd);
-	#print(names(eta_sqrd));
-
-	eta2_arr=(eta_sqrd[["Eta2_partial"]]);
+	# Output Effect Size
+	# "Parameter", "Omega2_partial", "CI", "CI_low", "CI_high"
+	omega2_arr=(omega_sqrd_partial[["Omega2_partial"]]);
+	names(omega2_arr)=omega_sqrd_partial[["Parameter"]];
 	
 	out_char_mat=cbind(
-		eta_sqrd[["Parameter"]],
-		sprintf("%6.4f", eta2_arr),
-		as.character(eta2_category(eta2_arr))
+		omega_sqrd[["Parameter"]],
+		sprintf("%6.4f", omega2_arr),
+		as.character(eta2_category(omega2_arr))
 		);
 
-	colnames(out_char_mat)=c("Parameter", "Eta^2", "Size");
+	colnames(out_char_mat)=c("Parameter", "Omega^2", "Size");
 	rownames(out_char_mat)=1:nrow(out_char_mat);
-	print(out_char_mat);
 
 	plot_text(c(
-		paste("Effect Size Analysis w/ Eta^2 for: ", div_names[i]),
-		capture.output(print(eta_sqrd)),
+		paste("Effect Size Analysis w/ Omega^2 for: ", current_divname),
+		capture.output(print(omega_sqrd)),
 		"",
 		"",
 		"",
@@ -1167,7 +1190,7 @@ for(i in 1:num_div_idx){
 	# Output regression coefficients and significance
 	sumtext=(capture.output(summary(fit)));
 	plot_text(c(
-		paste("Multiple Regression for: ", div_names[i]), 
+		paste("Multiple Regression for: ", current_divname), 
 		"",
 		model_string,
 		"",
@@ -1178,14 +1201,12 @@ for(i in 1:num_div_idx){
 	# Generate marginal model plots
 	mmps(fit);
 
-
-
+	#######################################################################
 	sum_fit=summary(fit);
-
 	computable_coef_names=names(sum_fit$coefficients[,"Estimate"]);
-
 	coeff_matrix[computable_coef_names,i]=sum_fit$coefficients[computable_coef_names,"Estimate"];
 	pval_matrix[computable_coef_names,i]=sum_fit$coefficients[computable_coef_names,"Pr(>|t|)"];
+	pomega2_matrix[terms, i]=omega2_arr[terms];
 }
 
 # R-squred summary
@@ -1212,8 +1233,10 @@ plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<
 significant_coeff=(pval_matrix<0.001)*coeff_matrix;
 plot_correl_heatmap(significant_coeff, title="Significant Coefficients: p-value<0.001", noPrintZeros=T);
 
+paint_matrix(pomega2_matrix, title="Effect Sizes (Omega^2)", plot_min=0, plot_max=.15, deci_pts=3);
+
 # Plot table of significant associations
-stab=signf_as_table(coeff_matrix, pval_matrix);
+stab=signf_as_table(coeff_matrix, pval_matrix, pomega2_matrix);
 options(width=1000);
 plot_text(capture.output(print(stab, quote=F)), .8);
 
