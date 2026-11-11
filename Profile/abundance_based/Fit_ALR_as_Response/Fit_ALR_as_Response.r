@@ -1852,9 +1852,6 @@ plot_title_page("Significant ALR Responses\nby Predictor");
 plot_summary_lists(uv_coeff_mat, uv_pval_mat, type="predictors");
 
 #############################################################################	
-dev.off();
-
-##############################################################################
 # Output factor information and MANOVA table
 
 sink(paste(OutputRoot, ".mlr.log.txt", sep=""));
@@ -1871,6 +1868,8 @@ sink();
 # Output pvalues 
 
 if(manova_success){
+	cat("Since MANOVA was successful, writing .pval.tsv file.\n");
+
 	manova_col=ncol(manova_res);
 	manova_row=nrow(manova_res);
 
@@ -1896,10 +1895,18 @@ write.table(t(uv_coeff_mat), file=uv_coeff_fname, quote=F, sep="\t", col.names=N
 # Write MANOVA pvalues to file
 
 if(manova_success){
+	cat("Since MANOVA was successful, extracting data for alr_as_resp.anova.summary.tsv file.\n");
+
         num_variables=nrow(manova_res)-1;
         outmat=matrix("", nrow=num_variables, ncol=3);
+
+	if(TagName==""){
+		TagName="MANOVA";
+	}
+
         colnames(outmat)=c(TagName, "Pr(>F)", "Signf");
         varnames=unlist(rownames(manova_res));
+
         pvals=unlist(manova_res["Pr(>F)"]);
         outmat[,TagName]=varnames[1:num_variables];
         outmat[,"Pr(>F)"]=sprintf("%4.4f", pvals[1:num_variables]);
@@ -1914,6 +1921,6 @@ write.table(outmat, file=paste(OutputRoot, ".alr_as_resp.anova.summary.tsv", sep
 ##############################################################################
 
 cat("Done.\n");
-#dev.off();
+dev.off();
 print(warnings());
 q(status=0);
