@@ -6,6 +6,7 @@ library(MASS);
 library(vegan);
 library('getopt');
 library(car);
+library(effectsize);
 options(useFancyQuotes=F);
 
 RM_NA_TRIALS=10000*64;
@@ -1215,6 +1216,7 @@ plot_correl_heatmap((fdr_pval_matrix<0.05)*cor_mat,
 ##############################################################################
 
 uv_fit=list();
+uv_eff_list=list();
 
 #model_string=paste("transformed[,1] ~", paste(factor_names, collapse=" + "));
 #model_matrix=model.matrix(as.formula(model_string), data=factors);
@@ -1302,7 +1304,37 @@ for(var_ix in 1:num_cat_to_analyze){
 		1-pf(uv_summ$fstatistic["value"], uv_summ$fstatistic["numdf"], 
 		uv_summ$fstatistic["dendf"]);
 
+	# Save effect sizes
+	t3_anova=Anova(uv_fit[[var_ix]], type=3);
+	uv_eff_list[[var_ix]]=omega_squared(t3_anova, partial=T);
+
 }
+
+#------------------------------------------------------------------------------
+
+move_eff_list_to_matrix=function(eff_lst){
+	print(eff_lst);
+
+	num_cat=length(eff_lst);
+	# Allocation matrix
+	num_eff_terms=nrow(eff_lst[[1]]);
+	eff_matrix=matrix(NA, nrow=num_eff_terms, ncol=num_cat);
+	colnames(eff_matrix)=sorted_taxa_names;
+	rownames(eff_matrix)=eff_lst[[1]][["Parameter"]];
+	#print(eff_matrix);
+
+	# Copy list to matrix
+	for(i in 1:num_cat){
+		eff_matrix[,i]=eff_lst[[i]][["Omega2_partial"]];
+	}
+	return(eff_matrix);
+
+}
+
+# Taxa are columns, Variables are rows
+uv_eff_mat=move_eff_list_to_matrix(uv_eff_list);
+
+#------------------------------------------------------------------------------
 
 cat("\nUnivariate Regression Coefficients:\n");
 print(uv_coeff_mat)
@@ -1445,6 +1477,10 @@ write.table(t(uv_coeff_mat), file=paste(OutputRoot, ".alr_as_resp.coefs.tsv", se
 
 ##############################################################################
 
+paint_matrix(uv_eff_mat, title="Effect Sizes (Omega^2)", plot_min=0, plot_max=.20, deci_pts=3);
+
+##############################################################################
+
 reg_coef_power=function(uv_reg_fit, factor=10, alpha=.05, power=.8){
 	
 	cat("---------------------------------------------\n");
@@ -1540,7 +1576,9 @@ for(var_ix in 1:num_cat_to_analyze){
 	par(mfrow=c(1,1));
 	par(mar=c(1,1,1,1));
 
-	# Output univariate ANOVA results
+	#----------------------------------------------------------------------
+	# Output univariate ANOVA results from anova
+
 	summary_txt=c();
 	summary_txt[1]="Univariate Regression ANOVA Results:";
 	summary_txt[2]="";
@@ -1555,12 +1593,18 @@ for(var_ix in 1:num_cat_to_analyze){
 	plot_text(summary_txt);	
 
 	#----------------------------------------------------------------------
-	
-	# Regenerate summary table after removing NAs
+	# Output coeffections table removing NAs
+
 	uv_summary=summary(uv_fit[[var_ix]]);
 	tmp_dtfr=as.data.frame(uv_summary$coefficients);
 	not_estimable=is.na(tmp_dtfr[,"Estimate"]);
 	tmp_dtfr=tmp_dtfr[!not_estimable,];
+
+	pval=tmp_dtfr[,"Pr(>|t|)"];
+	tmp_dtfr[,"Estimate"]=sprintf("%7.3f", tmp_dtfr[,"Estimate"]);
+	tmp_dtfr[,"Std. Error"]=sprintf("%6.3f", tmp_dtfr[,"Std. Error"]);
+	tmp_dtfr[,"t value"]=sprintf("%5.2f", tmp_dtfr[,"t value"]);
+	tmp_dtfr[,"Pr(>|t|)"]=sprintf("%8.5g", tmp_dtfr[,"Pr(>|t|)"]);
 
 	# Mark the p-values that are significant
 	sig_char=function(x){
@@ -1573,7 +1617,7 @@ for(var_ix in 1:num_cat_to_analyze){
 		return(s);
 	}
 
-	signif=sig_char(tmp_dtfr[,4]);
+	signif=sig_char(pval);
 	tmp_dtfr=cbind(tmp_dtfr, signif);
 	coeff_txt=capture.output(tmp_dtfr);
 
@@ -1619,6 +1663,22 @@ for(var_ix in 1:num_cat_to_analyze){
 		fstat_txt
 	)
 	plot_text(summary_txt);
+
+	#----------------------------------------------------------------------
+	# Report Effect Sizes
+	eff_mat_char=matrix("", nrow=nrow(uv_eff_mat), ncol=2);
+	colnames(eff_mat_char)=c("Omega^2", "Category");
+	eff_mat_char[,"Omega^2"]=sprintf("%7.4f", uv_eff_mat[,var_ix]);
+	eff_mat_char[,"Category"]=as.character(eta2_category(uv_eff_mat[,var_ix]));
+	rownames(eff_mat_char)=rownames(uv_eff_mat);
+
+	print(eff_mat_char);
+	plot_text(c(
+		"Effect Sizes (Omega^2):",
+		"",
+		capture.output(print(eff_mat_char, quote=F))
+		));
+			
 
 	#----------------------------------------------------------------------
 
