@@ -528,6 +528,28 @@ barplot_top_proxies(selected_proxies);
 
 #------------------------------------------------------------------------------
 
+# Heat map reused variables
+
+heatmap_proxies=function(sel_prox, tfluxmat){
+
+	uniq_prox=sel_prox$unique_proxies;
+
+	trans_prox_val=tfluxmat[,uniq_prox];
+
+	proxy_cor=cor(trans_prox_val);
+	paint_matrix(proxy_cor, 
+		title="Inter-Proxy Correlations",
+		plot_min=-1, plot_max=1, deci_pts=2,
+		show_leading_zero=F);
+	
+	print(trans_prox_val);
+
+}
+
+heatmap_proxies(selected_proxies, trans_top_flux_mat);
+
+#------------------------------------------------------------------------------
+
 proxylist=cbind(selected_proxies[["unique_proxies"]]);
 colnames(proxylist)="Unique Selected Proxies";
 rownames(proxylist)=1:num_proxies;
