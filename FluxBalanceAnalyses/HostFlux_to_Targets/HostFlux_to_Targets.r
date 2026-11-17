@@ -541,9 +541,32 @@ heatmap_proxies=function(sel_prox, tfluxmat){
 		title="Inter-Proxy Correlations",
 		plot_min=-1, plot_max=1, deci_pts=2,
 		show_leading_zero=F);
-	
-	print(trans_prox_val);
 
+
+	abs_proxy_cor=abs(proxy_cor);
+	print(abs_proxy_cor);
+
+	paint_matrix(abs_proxy_cor, 
+		title="Inter-Proxy Correlations Magnitudes",
+		plot_min=0, plot_max=1, deci_pts=2,
+		show_leading_zero=F);
+
+	abv_p5=abs_proxy_cor>=0.5
+	abv_p2=abs_proxy_cor>=0.2
+	blw_p2=abs_proxy_cor<0.2
+
+	qnt_proxy_cor=abs_proxy_cor;
+	qnt_proxy_cor[blw_p2]=0;
+	qnt_proxy_cor[abv_p2]=.2;
+	qnt_proxy_cor[abv_p5]=.5;
+	
+	paint_matrix(qnt_proxy_cor,
+		title="Inter-Proxy Correlation Quantized",
+		subtitle="{0: <.2,  .2: >=.2,  .5: >=.5}",
+		plot_min=0, plot_max=1, deci_pts=1,
+		label_zeros=F,
+		show_leading_zero=F);
+	
 }
 
 heatmap_proxies(selected_proxies, trans_top_flux_mat);
