@@ -536,6 +536,8 @@ heatmap_proxies=function(sel_prox, tfluxmat){
 
 	trans_prox_val=tfluxmat[,uniq_prox];
 
+
+	#----------------------------------------------------------------------
 	proxy_cor=cor(trans_prox_val);
 	paint_matrix(proxy_cor, 
 		title="Inter-Proxy Correlations",
@@ -543,6 +545,7 @@ heatmap_proxies=function(sel_prox, tfluxmat){
 		show_leading_zero=F);
 
 
+	#----------------------------------------------------------------------
 	abs_proxy_cor=abs(proxy_cor);
 	print(abs_proxy_cor);
 
@@ -551,6 +554,7 @@ heatmap_proxies=function(sel_prox, tfluxmat){
 		plot_min=0, plot_max=1, deci_pts=2,
 		show_leading_zero=F);
 
+	#----------------------------------------------------------------------
 	abv_p5=abs_proxy_cor>=0.5
 	abv_p2=abs_proxy_cor>=0.2
 	blw_p2=abs_proxy_cor<0.2
@@ -561,11 +565,30 @@ heatmap_proxies=function(sel_prox, tfluxmat){
 	qnt_proxy_cor[abv_p5]=.5;
 	
 	paint_matrix(qnt_proxy_cor,
-		title="Inter-Proxy Correlation Quantized",
+		title="Inter-Proxy Correlation Quantized Magnitudes",
 		subtitle="{0: <.2,  .2: >=.2,  .5: >=.5}",
 		plot_min=0, plot_max=1, deci_pts=1,
 		label_zeros=F,
 		show_leading_zero=F);
+
+	#----------------------------------------------------------------------
+	
+	large_corr=apply(abs_proxy_cor, 2, function(x){
+			sum(x>=.5)>1});
+
+	large_cor_mat=abs_proxy_cor[large_corr, large_corr, drop=F];
+
+
+	norm_exp=function(x, k = 5) {
+		   (exp(k * x) - 1) / (exp(k) - 1)
+	}
+
+	paint_matrix(norm_exp(large_cor_mat),
+		title="Top Inter-Proxy Correlation Magnitudes",
+		subtitle="Only Proxies with correlations > 0.5",
+		plot_min=0, plot_max=1, deci_pts=1,
+		suppress_value_labels=T);
+		
 	
 }
 
